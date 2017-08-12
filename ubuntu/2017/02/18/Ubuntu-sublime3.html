@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Suzy Wu's blog">
+
+    <title>Set up Sublime3 in Ubuntu - Shujin Wu</title>
+
+<!--     <link rel="canonical" href="http://suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3"> -->
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+	<!-- MathJax -->
+	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			<!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+			inlineMath: [ ['$','$'] ],
+			<!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+			displayMath: [ ['$$','$$'] ],
+			processEscapes: true
+		},
+		"HTML-CSS": { availableFonts: ["TeX"] },
+		<!-- displayAlign: "left" -->
+	});
+	</script>
+</head>
+
+
+<body>
+    <!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Shujin Wu</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../../../../index-3.html">Home</a></li>
+                <li><a href="../../../../resume.html">résumé</a></li>
+                <li><a href="../../../../resources.html">Resources</a></li>
+                <li><a href="../../../../categories.html">Notes</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    
+<section id="wrapper">
+    <header>
+        <div class="inner">
+            <h2>Set up Sublime3 in Ubuntu</h2> 
+            <p>Posted by Shujin Wu on February 18, 2017</p> 
+        </div>
+    </header>
+    <div class="wrapper">
+         <div class="inner">
+         
+<h1 id="ansible-role">Ansible Role</h1>
+
+<p>Run Ansible playbook: <a href="https://github.com/SuzyWu2014/my-ansible-roles">Ubuntu Environment Set Up</a></p>
+
+<h1 id="packages">Packages</h1>
+
+<p><code class="highlighter-rouge">[Ctrl+Shift+P] -&gt; Install Packages</code></p>
+
+<ul>
+  <li>SidebarEnhancement</li>
+  <li>SublimeLinter</li>
+  <li>SublimeLinter-pep8</li>
+  <li>SublimeCodeIntel</li>
+  <li>SublimeHaskell</li>
+  <li>GitGutter</li>
+  <li>JSLint</li>
+  <li>Markdown-editing (update line_numbers to true for each user setting)</li>
+  <li>Markdown Preview</li>
+  <li>Trailing-space</li>
+  <li>Color-highlighter</li>
+  <li>bracketHighlighter</li>
+  <li>CTag</li>
+  <li>ansible</li>
+  <li><a href="https://github.com/YabataDesign/afterglow-theme">afterglow-theme</a></li>
+</ul>
+
+<h1 id="configuration">Configuration</h1>
+
+<p><code class="highlighter-rouge">Preferences -&gt; Settings (User)</code></p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"added_words"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"filesystems"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"color_inactive_tabs"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/SublimeLinter/Afterglow-markdown (SL).tmTheme"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"font_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ignored_packages"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Auto Hide Sidebar"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Vintage"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"ignored_words"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Cgroup"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Filesystem"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Namespace"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Seccomp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"filesystem"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"len"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"namedtuple"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"namespace"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"namespacing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"obj1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"obj2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"plit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seccomp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"str"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uits"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"open_externally_patterns"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"*.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"*.jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"*.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"*.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"*.zip"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"*.pdf"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"sidebar_icon"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sidebar_row_padding_medium"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sidebar_size_12"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status_bar_brighter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tab_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tabs_medium"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tabs_padding_medium"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afterglow-blue.sublime-theme"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translate_tabs_to_spaces"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"word_wrap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Preferences -&gt; key bindings</code></p>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[{</span><span class="w"> </span><span class="nt">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ctrl+shift+o"</span><span class="p">],</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prompt_open_folder"</span><span class="w"> </span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"mmd"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="err">//</span><span class="nt">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/MarkdownEditing/MarkdownEditor.tmTheme"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="nt">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/MarkdownEditing/MarkdownEditor-Yellow.tmTheme"</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">quick</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">dirty</span><span class="w"> </span><span class="err">focus</span><span class="w"> </span><span class="err">theme.</span><span class="w"> </span><span class="err">In</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">make</span><span class="w"> </span><span class="err">it</span><span class="w"> </span><span class="err">work,</span><span class="w"> </span><span class="err">you've</span><span class="w"> </span><span class="err">to</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">`</span><span class="nt">"highlight_line"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="err">`</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">settings</span><span class="w"> </span><span class="err">file.</span><span class="w"> </span><span class="err">It</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">likely</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">there</span><span class="w"> </span><span class="err">will</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">mature</span><span class="w"> </span><span class="err">focus</span><span class="w"> </span><span class="err">improvements</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">future</span><span class="w"> </span><span class="err">(maybe</span><span class="w"> </span><span class="err">similar</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">iA</span><span class="w"> </span><span class="err">Writer).</span><span class="w">
+    </span><span class="err">//</span><span class="nt">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/MarkdownEditing/MarkdownEditor-Focus.tmTheme"</span><span class="p">,</span><span class="w">
+
+    </span><span class="nt">"tab_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"translate_tabs_to_spaces"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trim_trailing_white_space_on_save"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"auto_match_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Layout</span><span class="w">
+    </span><span class="nt">"draw_centered"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"word_wrap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"wrap_width"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rulers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Line</span><span class="w">
+    </span><span class="nt">"line_numbers"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"highlight_line"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line_padding_top"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"line_padding_bottom"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Caret</span><span class="w">
+    </span><span class="nt">"caret_style"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wide"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"caret_extra_top"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"caret_extra_bottom"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">add</span><span class="w"> </span><span class="err">trailing</span><span class="w"> </span><span class="err">#'s</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">headlines</span><span class="w">
+    </span><span class="nt">"mde.match_header_hashes"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Automatically</span><span class="w"> </span><span class="err">switches</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">bullet</span><span class="w"> </span><span class="err">when</span><span class="w"> </span><span class="err">indenting</span><span class="w"> </span><span class="err">blank</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">item</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">&lt;Tab&gt;.</span><span class="w">
+    </span><span class="nt">"mde.list_indent_auto_switch_bullet"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">List</span><span class="w"> </span><span class="err">bullets</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">automatically</span><span class="w"> </span><span class="err">switching.</span><span class="w"> </span><span class="err">In</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">order.</span><span class="w">
+    </span><span class="nt">"mde.list_indent_bullets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w"> </span><span class="s2">"+"</span><span class="p">],</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Auto</span><span class="w"> </span><span class="err">increments</span><span class="w"> </span><span class="err">ordered</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">number.</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">false</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">want</span><span class="w"> </span><span class="err">always</span><span class="w"> </span><span class="nt">"1"</span><span class="err">.</span><span class="w">
+    </span><span class="nt">"mde.auto_increment_ordered_list_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Always</span><span class="w"> </span><span class="err">keep</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">line</span><span class="w"> </span><span class="err">vertically</span><span class="w"> </span><span class="err">centered.</span><span class="w">
+    </span><span class="nt">"mde.keep_centered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Distraction</span><span class="w"> </span><span class="err">free</span><span class="w"> </span><span class="err">mode</span><span class="w"> </span><span class="err">improvements.</span><span class="w"> </span><span class="err">In</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">these</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">work,</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">have</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">install</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">FullScreenStatus</span><span class="w"> </span><span class="err">plugin</span><span class="p">:</span><span class="w"> </span><span class="err">https://github.com/maliayas/SublimeText_FullScreenStatus</span><span class="w">
+    </span><span class="s2">"mde.distraction_free_mode"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mde.keep_centered"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="nt">"mde.lint"</span><span class="p">:{</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">disabled</span><span class="w"> </span><span class="err">rules,</span><span class="w"> </span><span class="err">e.g.</span><span class="w"> </span><span class="nt">"md001"</span><span class="err">.</span><span class="w">
+        </span><span class="nt">"disable"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"md013"</span><span class="p">],</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Options</span><span class="p">:</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">atx</span><span class="p">,</span><span class="w">        </span><span class="err">##</span><span class="w"> </span><span class="err">title</span><span class="w">    </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">atx_closed,</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="err">title</span><span class="w"> </span><span class="err">##</span><span class="w"> </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">setext,</span><span class="w">     </span><span class="err">title</span><span class="w">       </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">                  </span><span class="err">=====</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">any,</span><span class="w">        </span><span class="err">consistent</span><span class="w"> </span><span class="err">within</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">document</span><span class="w">
+        </span><span class="nt">"md003"</span><span class="p">:</span><span class="w"> </span><span class="s2">"any"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Options</span><span class="p">:</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">asterisk</span><span class="p">,</span><span class="w">   </span><span class="err">*</span><span class="w"> </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">plus,</span><span class="w">       </span><span class="err">+</span><span class="w"> </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">dash,</span><span class="w">       </span><span class="err">-</span><span class="w"> </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">cyclic,</span><span class="w">     </span><span class="err">different</span><span class="w"> </span><span class="err">symbols</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">different</span><span class="w"> </span><span class="err">levels</span><span class="w">
+        </span><span class="err">//</span><span class="w">                  </span><span class="err">and</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">symbol</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">level</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">single,</span><span class="w">     </span><span class="err">same</span><span class="w"> </span><span class="err">symbol</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">different</span><span class="w"> </span><span class="err">levels</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">any,</span><span class="w">        </span><span class="err">same</span><span class="w"> </span><span class="err">symbol</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">level</span><span class="w">
+        </span><span class="nt">"md004"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cyclic"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">spaces</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">indent.</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">0</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">Sublime</span><span class="w"> </span><span class="err">tab_size</span><span class="w"> </span><span class="err">instead</span><span class="w">
+        </span><span class="nt">"md007"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Maximum</span><span class="w"> </span><span class="err">line</span><span class="w"> </span><span class="err">length,</span><span class="w"> </span><span class="err">Set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">0</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">Sublime</span><span class="w"> </span><span class="err">wrap_width</span><span class="w"> </span><span class="err">instead</span><span class="w">
+        </span><span class="nt">"md013"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Disallowed</span><span class="w"> </span><span class="err">trailing</span><span class="w"> </span><span class="err">punctuation</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">headers</span><span class="w">
+        </span><span class="nt">"md026"</span><span class="p">:</span><span class="w"> </span><span class="s2">".,;:!"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">Options</span><span class="p">:</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">one</span><span class="p">,</span><span class="w">        </span><span class="err">'1.'</span><span class="w"> </span><span class="err">only</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">ordered,</span><span class="w">    </span><span class="err">ascending</span><span class="w"> </span><span class="err">number</span><span class="w">
+        </span><span class="err">//</span><span class="w">      </span><span class="err">any,</span><span class="w">        </span><span class="err">consistent</span><span class="w"> </span><span class="err">within</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">list</span><span class="w">
+        </span><span class="nt">"md029"</span><span class="p">:</span><span class="w"> </span><span class="s2">"any"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">(ordered</span><span class="w"> </span><span class="err">vs</span><span class="w"> </span><span class="err">unordered,</span><span class="w"> </span><span class="err">single-line</span><span class="w"> </span><span class="err">vs</span><span class="w"> </span><span class="err">multi-line)</span><span class="w">
+        </span><span class="nt">"md030"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"ul_single"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"ol_single"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="err">//</span><span class="w"> </span><span class="err">optinally,</span><span class="w"> </span><span class="err">3</span><span class="w">
+            </span><span class="nt">"ul_multi"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="err">//</span><span class="w"> </span><span class="err">optionaly,</span><span class="w"> </span><span class="err">2</span><span class="w">
+            </span><span class="nt">"ol_multi"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<h2 id="add-chinese-support">Add Chinese Support</h2>
+
+<p><a href="http://html5beta.com/page/ubuntu-14-04-install-fcitx-sougoupinyin-sublime-text-3-chinese-input-fix.html#">Enable sougou-pinyin in SublimeText 3</a></p>
+
+<ul>
+  <li>Go to <code class="highlighter-rouge">/opt/sublime_text</code></li>
+  <li>Run <code class="highlighter-rouge">sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  </code>pkg-config –libs –cflags gtk+-2.0<code class="highlighter-rouge"> -fPIC</code></li>
+</ul>
+
+         </div>
+    </div>  
+</section>
+
+
+
+
+    
+<!-- Footer -->
+<section id="footer">
+    <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <p></p>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
+            
+            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
+            
+            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright &copy; Shujin Wu 2017</li>
+        </ul>
+    </div>
+</section>
+
+</div>
+<!-- Scripts -->
+<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+
+
+
+
+
+
+</body>
+
+
+<!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:15 GMT -->
+</html>
+

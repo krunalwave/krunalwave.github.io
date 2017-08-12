@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from suzywu2014.github.io/linux/2016/06/07/Bash-Pipe by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Suzy Wu's blog">
+
+    <title>Bash - Pipe - Shujin Wu</title>
+
+<!--     <link rel="canonical" href="http://suzywu2014.github.io/linux/2016/06/07/Bash-Pipe"> -->
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+	<!-- MathJax -->
+	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			<!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+			inlineMath: [ ['$','$'] ],
+			<!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+			displayMath: [ ['$$','$$'] ],
+			processEscapes: true
+		},
+		"HTML-CSS": { availableFonts: ["TeX"] },
+		<!-- displayAlign: "left" -->
+	});
+	</script>
+</head>
+
+
+<body>
+    <!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Shujin Wu</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../../../../index-3.html">Home</a></li>
+                <li><a href="../../../../resume.html">résumé</a></li>
+                <li><a href="../../../../resources.html">Resources</a></li>
+                <li><a href="../../../../categories.html">Notes</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    
+<section id="wrapper">
+    <header>
+        <div class="inner">
+            <h2>Bash - Pipe</h2> 
+            <p>Posted by Shujin Wu on June 7, 2016</p> 
+        </div>
+    </header>
+    <div class="wrapper">
+         <div class="inner">
+         
+<h1 id="overview">Overview</h1>
+<p>管线命令仅会处理 standard output，对于 standard error output 会予以忽略, 且必须要能够接受来自前一个命令的数据成为 standard input 继续处理才行。</p>
+
+<ul>
+  <li>撷取命令： cut, grep</li>
+  <li>排序命令： sort, uniq, wc</li>
+  <li>双向重导向： tee</li>
+  <li>字符转换命令： tr, col, join, paste, expand</li>
+  <li>分割命令： split</li>
+  <li>参数代换： xargs</li>
+  <li>关于减号 - 的用途</li>
+</ul>
+
+<h1 id="cut-grep-analyze-line-by-line">cut, grep (analyze line by line)</h1>
+
+<h2 id="cut">cut</h2>
+
+<p>cut 主要的用途在于将『同一行里面的数据进行分解！』最常使用在分析一些数据或文字数据的时候. 不过，cut 在处理多空格相连的数据时，可能会比较吃力一点。</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# cut -d<span class="s1">'分隔字符'</span> -f fields &lt;<span class="o">==</span>用于有特定分隔字符
+<span class="o">[</span>root@www ~]# cut -c 字符区间            &lt;<span class="o">==</span>用于排列整齐的信息
+选项与参数：
+-d  ：后面接分隔字符。与 -f 一起使用；
+-f  ：依据 -d 的分隔字符将一段信息分割成为数段，用 -f 取出第几段的意思；
+-c  ：以字符 <span class="o">(</span>characters<span class="o">)</span> 的单位取出固定字符区间；
+
+范例一：将 PATH 变量取出，我要找出第五个路径。
+<span class="o">[</span>root@www ~]# <span class="nb">echo</span> <span class="nv">$PATH</span>
+/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/X11R6/bin:/usr/games:
+<span class="c"># 1 |    2   |  3  |    4    |       5      |     6        |    7</span>
+
+<span class="o">[</span>root@www ~]# <span class="nb">echo</span> <span class="nv">$PATH</span> | cut -d <span class="s1">':'</span> -f 5
+<span class="c"># 如同上面的数字显示，我们是以『 : 』作为分隔，因此会出现 /usr/local/bin </span>
+<span class="c"># 那么如果想要列出第 3 与第 5 呢？，就是这样：</span>
+<span class="o">[</span>root@www ~]# <span class="nb">echo</span> <span class="nv">$PATH</span> | cut -d <span class="s1">':'</span> -f 3,5
+
+范例二：将 <span class="nb">export </span>输出的信息，取得第 12 字符以后的所有字符串
+<span class="o">[</span>root@www ~]# <span class="nb">export
+declare</span> -x <span class="nv">HISTSIZE</span><span class="o">=</span><span class="s2">"1000"</span>
+<span class="nb">declare</span> -x <span class="nv">INPUTRC</span><span class="o">=</span><span class="s2">"/etc/inputrc"</span>
+<span class="nb">declare</span> -x <span class="nv">KDEDIR</span><span class="o">=</span><span class="s2">"/usr"</span>
+<span class="nb">declare</span> -x <span class="nv">LANG</span><span class="o">=</span><span class="s2">"zh_TW.big5"</span>
+.....<span class="o">(</span>其他省略<span class="o">)</span>.....
+<span class="c"># 注意看，每个数据都是排列整齐的输出！如果我们不想要『 declare -x 』时，</span>
+<span class="c"># 就得这么做：</span>
+
+<span class="o">[</span>root@www ~]# <span class="nb">export</span> | cut -c 12-
+<span class="nv">HISTSIZE</span><span class="o">=</span><span class="s2">"1000"</span>
+<span class="nv">INPUTRC</span><span class="o">=</span><span class="s2">"/etc/inputrc"</span>
+<span class="nv">KDEDIR</span><span class="o">=</span><span class="s2">"/usr"</span>
+<span class="nv">LANG</span><span class="o">=</span><span class="s2">"zh_TW.big5"</span>
+.....<span class="o">(</span>其他省略<span class="o">)</span>.....
+<span class="c"># 知道怎么回事了吧？用 -c 可以处理比较具有格式的输出数据！</span>
+<span class="c"># 我们还可以指定某个范围的值，例如第 12-20 的字符，就是 cut -c 12-20 等等！</span>
+
+范例三：用 last 将显示的登陆者的信息中，仅留下用户大名
+<span class="o">[</span>root@www ~]# last
+root   pts/1    192.168.201.101  Sat Feb  7 12:35   still logged <span class="k">in
+</span>root   pts/1    192.168.201.101  Fri Feb  6 12:13 - 18:46  <span class="o">(</span>06:33<span class="o">)</span>
+root   pts/1    192.168.201.254  Thu Feb  5 22:37 - 23:53  <span class="o">(</span>01:16<span class="o">)</span>
+<span class="c"># last 可以输出『账号/终端机/来源/日期时间』的数据，并且是排列整齐的</span>
+
+<span class="o">[</span>root@www ~]# last | cut -d <span class="s1">' '</span> -f 1
+<span class="c"># 由输出的结果我们可以发现第一个空白分隔的字段代表账号，所以使用如上命令：</span>
+<span class="c"># 但是因为 root   pts/1 之间空格有好几个，并非仅有一个，所以，如果要找出 </span>
+<span class="c"># pts/1 其实不能以 cut -d ' ' -f 1,2 喔！输出的结果会不是我们想要的。</span>
+</code></pre>
+</div>
+
+<h2 id="grep">grep</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# grep <span class="o">[</span>-acinv] <span class="o">[</span>--color<span class="o">=</span>auto] <span class="s1">'搜寻字符串'</span> filename
+选项与参数：
+-a ：将 binary 文件以 text 文件的方式搜寻数据
+-c ：计算找到 <span class="s1">'搜寻字符串'</span> 的次数
+-i ：忽略大小写的不同，所以大小写视为相同
+-n ：顺便输出行号
+-v ：反向选择，亦即显示出没有 <span class="s1">'搜寻字符串'</span> 内容的那一行！
+--color<span class="o">=</span>auto ：可以将找到的关键词部分加上颜色的显示喔！
+
+范例一：将 last 当中，有出现 root 的那一行就取出来；
+<span class="o">[</span>root@www ~]# last | grep <span class="s1">'root'</span>
+
+范例二：与范例一相反，只要没有 root 的就取出！
+<span class="o">[</span>root@www ~]# last | grep -v <span class="s1">'root'</span>
+
+范例三：在 last 的输出信息中，只要有 root 就取出，并且仅取第一栏
+<span class="o">[</span>root@www ~]# last | grep <span class="s1">'root'</span> |cut -d <span class="s1">' '</span> -f1
+<span class="c"># 在取出 root 之后，利用上个命令 cut 的处理，就能够仅取得第一栏啰！</span>
+
+范例四：取出 /etc/man.config 内含 MANPATH 的那几行
+<span class="o">[</span>root@www ~]# grep --color<span class="o">=</span>auto <span class="s1">'MANPATH'</span> /etc/man.config
+....<span class="o">(</span>前面省略<span class="o">)</span>....
+MANPATH_MAP     /usr/X11R6/bin          /usr/X11R6/man
+MANPATH_MAP     /usr/bin/X11            /usr/X11R6/man
+MANPATH_MAP     /usr/bin/mh             /usr/share/man
+</code></pre>
+</div>
+
+<h1 id="排序命令-sort-wc-uniq">排序命令： sort, wc, uniq</h1>
+
+<h2 id="sort">sort</h2>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# sort <span class="o">[</span>-fbMnrtuk] <span class="o">[</span>file or stdin]
+选项与参数：
+-f  ：忽略大小写的差异，例如 A 与 a 视为编码相同；
+-b  ：忽略最前面的空格符部分；
+-M  ：以月份的名字来排序，例如 JAN, DEC 等等的排序方法；
+-n  ：使用『纯数字』进行排序<span class="o">(</span>默认是以文字型态来排序的<span class="o">)</span>；
+-r  ：反向排序；
+-u  ：就是 uniq ，相同的数据中，仅出现一行代表；
+-t  ：分隔符，默认是用 <span class="o">[</span>tab] 键来分隔；
+-k  ：以那个区间 <span class="o">(</span>field<span class="o">)</span> 来进行排序的意思
+
+范例一：个人账号都记录在 /etc/passwd 下，请将账号进行排序。
+<span class="o">[</span>root@www ~]# cat /etc/passwd | sort
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+apache:x:48:48:Apache:/var/www:/sbin/nologin
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+<span class="c"># 鸟哥省略很多的输出～由上面的数据看起来， sort 是默认『以第一个』数据来排序，</span>
+<span class="c"># 而且默认是以『文字』型态来排序的喔！所以由 a 开始排到最后啰！</span>
+
+范例二：/etc/passwd 内容是以 : 来分隔的，我想以第三栏来排序，该如何？
+<span class="o">[</span>root@www ~]# cat /etc/passwd | sort -t <span class="s1">':'</span> -k 3
+root:x:0:0:root:/root:/bin/bash
+uucp:x:10:14:uucp:/var/spool/uucp:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+bin:x:1:1:bin:/bin:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+<span class="c"># 看到特殊字体的输出部分了吧？怎么会这样排列啊？呵呵！没错啦～</span>
+<span class="c"># 如果是以文字型态来排序的话，原本就会是这样，想要使用数字排序：</span>
+<span class="c"># cat /etc/passwd | sort -t ':' -k 3 -n</span>
+<span class="c"># 这样才行啊！用那个 -n 来告知 sort 以数字来排序啊！</span>
+
+范例三：利用 last ，将输出的数据仅取账号，并加以排序
+<span class="o">[</span>root@www ~]# last | cut -d <span class="s1">' '</span> -f1 | sort
+</code></pre>
+</div>
+
+<h2 id="uniq">uniq</h2>
+
+<p>这个命令用来将『重复的行删除掉只显示一个』</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# uniq <span class="o">[</span>-ic]
+选项与参数：
+-i  ：忽略大小写字符的不同；
+-c  ：进行计数
+
+范例一：使用 last 将账号列出，仅取出账号栏，进行排序后仅取出一位；
+<span class="o">[</span>root@www ~]# last | cut -d <span class="s1">' '</span> -f1 | sort | uniq
+
+范例二：承上题，如果我还想要知道每个人的登陆总次数呢？
+<span class="o">[</span>root@www ~]# last | cut -d <span class="s1">' '</span> -f1 | sort | uniq -c
+      1
+     12 reboot
+     41 root
+      1 wtmp
+<span class="c"># 从上面的结果可以发现 reboot 有 12 次， root 登陆则有 41 次！</span>
+<span class="c"># wtmp 与第一行的空白都是 last 的默认字符，那两个可以忽略的！</span>
+</code></pre>
+</div>
+
+<h2 id="wc">wc</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# wc <span class="o">[</span>-lwm]
+选项与参数：
+-l  ：仅列出行；
+-w  ：仅列出多少字<span class="o">(</span>英文单字<span class="o">)</span>；
+-m  ：多少字符；
+
+范例一：那个 /etc/man.config 里面到底有多少相关字、行、字符数？
+<span class="o">[</span>root@www ~]# cat /etc/man.config | wc 
+    141     722    4617
+<span class="c"># 输出的三个数字中，分别代表： 『行、字数、字符数』</span>
+
+范例二：我知道使用 last 可以输出登陆者，但是 last 最后两行并非账号内容，
+        那么请问，我该如何以一行命令串取得这个月份登陆系统的总人次？
+<span class="o">[</span>root@www ~]# last | grep <span class="o">[</span>a-zA-Z] | grep -v <span class="s1">'wtmp'</span> | wc -l 
+<span class="c"># 由于 last 会输出空白行与 wtmp 字样在最底下两行，因此，我利用</span>
+<span class="c"># grep 取出非空白行，以及去除 wtmp 那一行，在计算行数，就能够了解啰！</span>
+</code></pre>
+</div>
+
+<h1 id="双向重导向-tee">双向重导向： tee</h1>
+<p>tee 会同时将数据流分送到文件去与屏幕 (screen)；而输出到屏幕的，其实就是 stdout ，可以让下个命令继续处理喔！</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# tee <span class="o">[</span>-a] file
+选项与参数：
+-a  ：以累加 <span class="o">(</span>append<span class="o">)</span> 的方式，将数据加入 file 当中！
+
+<span class="o">[</span>root@www ~]# last | tee last.list | cut -d <span class="s2">" "</span> -f1
+<span class="c"># 这个范例可以让我们将 last 的输出存一份到 last.list 文件中；</span>
+
+<span class="o">[</span>root@www ~]# ls -l /home | tee ~/homefile | more
+<span class="c"># 这个范例则是将 ls 的数据存一份到 ~/homefile ，同时屏幕也有输出信息！</span>
+
+<span class="o">[</span>root@www ~]# ls -l / | tee -a ~/homefile | more
+<span class="c"># 要注意！ tee 后接的文件会被覆盖，若加上 -a 这个选项则能将信息累加。</span>
+</code></pre>
+</div>
+
+<h1 id="字符转换命令-tr-col-join-paste-expand">字符转换命令： tr, col, join, paste, expand</h1>
+
+<h2 id="tr-删除一段信息当中的文字或者是进行文字信息的替换">tr: 删除一段信息当中的文字，或者是进行文字信息的替换</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# tr <span class="o">[</span>-ds] SET1 ...
+选项与参数：
+-d  ：删除信息当中的 SET1 这个字符串；
+-s  ：取代掉重复的字符！
+
+范例一：将 last 输出的信息中，所有的小写变成大写字符：
+<span class="o">[</span>root@www ~]# last | tr <span class="s1">'[a-z]'</span> <span class="s1">'[A-Z]'</span>
+<span class="c"># 事实上，没有加上单引号也是可以运行的，如：『 last | tr [a-z] [A-Z] 』</span>
+
+范例二：将 /etc/passwd 输出的信息中，将冒号 <span class="o">(</span>:<span class="o">)</span> 删除
+<span class="o">[</span>root@www ~]# cat /etc/passwd | tr -d <span class="s1">':'</span>
+
+范例三：将 /etc/passwd 转存成 dos 断行到 /root/passwd 中，再将 ^M 符号删除
+<span class="o">[</span>root@www ~]# cp /etc/passwd /root/passwd <span class="o">&amp;&amp;</span> unix2dos /root/passwd
+<span class="o">[</span>root@www ~]# file /etc/passwd /root/passwd
+/etc/passwd:  ASCII text
+/root/passwd: ASCII text, with CRLF line terminators &lt;<span class="o">==</span>就是 DOS 断行
+<span class="o">[</span>root@www ~]# cat /root/passwd | tr -d <span class="s1">'\r'</span> &gt; /root/passwd.linux
+<span class="c"># 那个 \r 指的是 DOS 的断行字符，关于更多的字符，请参考 man tr</span>
+<span class="o">[</span>root@www ~]# ll /etc/passwd /root/passwd<span class="k">*</span>
+-rw-r--r-- 1 root root 1986 Feb  6 17:55 /etc/passwd
+-rw-r--r-- 1 root root 2030 Feb  7 15:55 /root/passwd
+-rw-r--r-- 1 root root 1986 Feb  7 15:57 /root/passwd.linux
+<span class="c"># 处理过后，发现文件大小与原本的 /etc/passwd 就一致了！</span>
+</code></pre>
+</div>
+
+<h2 id="col-用来简单的处理将-tab-按键取代成为空格键">col: 用来简单的处理将 [tab] 按键取代成为空格键</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# col <span class="o">[</span>-xb]
+选项与参数：
+-x  ：将 tab 键转换成对等的空格键
+-b  ：在文字内有反斜杠 <span class="o">(</span>/<span class="o">)</span> 时，仅保留反斜杠最后接的那个字符
+
+范例一：利用 cat -A 显示出所有特殊按键，最后以 col 将 <span class="o">[</span>tab] 转成空白
+<span class="o">[</span>root@www ~]# cat -A /etc/man.config  &lt;<span class="o">==</span>此时会看到很多 ^I 的符号，那就是 tab
+<span class="o">[</span>root@www ~]# cat /etc/man.config | col -x | cat -A | more
+<span class="c"># 嘿嘿！如此一来， [tab] 按键会被取代成为空格键，输出就美观多了！</span>
+
+范例二：将 col 的 man page 转存成为 /root/col.man 的纯文本档
+<span class="o">[</span>root@www ~]# man col &gt; /root/col.man
+<span class="o">[</span>root@www ~]# vi /root/col.man
+COL<span class="o">(</span>1<span class="o">)</span>          BSD General Commands Manual               COL<span class="o">(</span>1<span class="o">)</span>
+
+N^HNA^HAM^HME^HE
+     c^Hco^Hol^Hl - filter reverse line feeds from input
+
+S^HSY^HYN^HNO^HOP^HPS^HSI^HIS^HS
+     c^Hco^Hol^Hl <span class="o">[</span>-^H-b^Hbf^Hfp^Hpx^Hx] <span class="o">[</span>-^H-l^Hl _^Hn_^Hu_^Hm]
+<span class="c"># 你没看错！由于 man page 内有些特殊按钮会用来作为类似特殊按键与颜色显示，</span>
+<span class="c"># 所以这个文件内就会出现如上所示的一堆怪异字符(有 ^ 的)</span>
+
+<span class="o">[</span>root@www ~]# man col | col -b &gt; /root/col.man
+</code></pre>
+</div>
+
+<h2 id="join-处理两个文件当中有-相同数据-的那一行才将他加在一起">join: 处理『两个文件当中，有 “相同数据” 的那一行，才将他加在一起』</h2>
+<p>在使用 join 之前，你所需要处理的文件应该要事先经过排序 (sort) 处理！</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# join <span class="o">[</span>-ti12] file1 file2
+选项与参数：
+-t  ：join 默认以空格符分隔数据，并且比对『第一个字段』的数据，
+      如果两个文件相同，则将两笔数据联成一行，且第一个字段放在第一个！
+-i  ：忽略大小写的差异；
+-1  ：这个是数字的 1 ，代表『第一个文件要用那个字段来分析』的意思；
+-2  ：代表『第二个文件要用那个字段来分析』的意思。
+
+范例一：用 root 的身份，将 /etc/passwd 与 /etc/shadow 相关数据整合成一栏
+<span class="o">[</span>root@www ~]# head -n 3 /etc/passwd /etc/shadow
+<span class="gp">==&gt; </span>/etc/passwd &lt;<span class="o">==</span>
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+
+<span class="gp">==&gt; </span>/etc/shadow &lt;<span class="o">==</span>
+root:<span class="nv">$1$/</span>3AQpE5e<span class="nv">$y9A</span>/D0bh6rElAs:14120:0:99999:7:::
+bin:<span class="k">*</span>:14126:0:99999:7:::
+daemon:<span class="k">*</span>:14126:0:99999:7:::
+<span class="c"># 由输出的数据可以发现这两个文件的最左边字段都是账号！且以 : 分隔</span>
+
+<span class="o">[</span>root@www ~]# join -t <span class="s1">':'</span> /etc/passwd /etc/shadow
+root:x:0:0:root:/root:/bin/bash:<span class="nv">$1$/</span>3AQpE5e<span class="nv">$y9A</span>/D0bh6rElAs:14120:0:99999:7:::
+bin:x:1:1:bin:/bin:/sbin/nologin:<span class="k">*</span>:14126:0:99999:7:::
+daemon:x:2:2:daemon:/sbin:/sbin/nologin:<span class="k">*</span>:14126:0:99999:7:::
+<span class="c"># 透过上面这个动作，我们可以将两个文件第一字段相同者整合成一行！</span>
+<span class="c"># 第二个文件的相同字段并不会显示(因为已经在第一行了嘛！)</span>
+
+范例二：我们知道 /etc/passwd 第四个字段是 GID ，那个 GID 记录在 
+        /etc/group 当中的第三个字段，请问如何将两个文件整合？
+<span class="o">[</span>root@www ~]# head -n 3 /etc/passwd /etc/group
+<span class="gp">==&gt; </span>/etc/passwd &lt;<span class="o">==</span>
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+
+<span class="gp">==&gt; </span>/etc/group &lt;<span class="o">==</span>
+root:x:0:root
+bin:x:1:root,bin,daemon
+daemon:x:2:root,bin,daemon
+<span class="c"># 从上面可以看到，确实有相同的部分喔！赶紧来整合一下！</span>
+
+<span class="o">[</span>root@www ~]# join -t <span class="s1">':'</span> -1 4 /etc/passwd -2 3 /etc/group
+0:root:x:0:root:/root:/bin/bash:root:x:root
+1:bin:x:1:bin:/bin:/sbin/nologin:bin:x:root,bin,daemon
+2:daemon:x:2:daemon:/sbin:/sbin/nologin:daemon:x:root,bin,daemon
+<span class="c"># 同样的，相同的字段部分被移动到最前面了！所以第二个文件的内容就没再显示。</span>
+<span class="c"># 请读者们配合上述显示两个文件的实际内容来比对！</span>
+</code></pre>
+</div>
+
+<h2 id="paste-直接将两行贴在一起且中间以-tab-键隔开">paste: 直接『将两行贴在一起，且中间以 [tab] 键隔开』</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# paste <span class="o">[</span>-d] file1 file2
+选项与参数：
+-d  ：后面可以接分隔字符。默认是以 <span class="o">[</span>tab] 来分隔的！
+-   ：如果 file 部分写成 - ，表示来自 standard input 的数据的意思。
+
+范例一：将 /etc/passwd 与 /etc/shadow 同一行贴在一起
+<span class="o">[</span>root@www ~]# paste /etc/passwd /etc/shadow
+bin:x:1:1:bin:/bin:/sbin/nologin        bin:<span class="k">*</span>:14126:0:99999:7:::
+daemon:x:2:2:daemon:/sbin:/sbin/nologin daemon:<span class="k">*</span>:14126:0:99999:7:::
+adm:x:3:4:adm:/var/adm:/sbin/nologin    adm:<span class="k">*</span>:14126:0:99999:7:::
+<span class="c"># 注意喔！同一行中间是以 [tab] 按键隔开的！</span>
+
+范例二：先将 /etc/group 读出<span class="o">(</span>用 cat<span class="o">)</span>，然后与范例一贴上一起！且仅取出前三行
+<span class="o">[</span>root@www ~]# cat /etc/group|paste /etc/passwd /etc/shadow -|head -n 3
+<span class="c"># 这个例子的重点在那个 - 的使用！那玩意儿常常代表 stdin 喔！</span>
+</code></pre>
+</div>
+
+<h2 id="expand-将-tab-按键转成空格键">expand: 将 [tab] 按键转成空格键</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>选项与参数：
+-t  ：后面可以接数字。一般来说，一个 tab 按键可以用 8 个空格键取代。
+      我们也可以自行定义一个 <span class="o">[</span>tab] 按键代表多少个字符呢！
+
+范例一：将 /etc/man.config 内行首为 MANPATH 的字样就取出；仅取前三行；
+<span class="o">[</span>root@www ~]# grep <span class="s1">'^MANPATH'</span> /etc/man.config | head -n 3
+MANPATH /usr/man
+MANPATH /usr/share/man
+MANPATH /usr/local/man
+<span class="c"># 行首的代表标志为 ^ ，这个我们留待下节介绍！先有概念即可！</span>
+
+范例二：承上，如果我想要将所有的符号都列出来？<span class="o">(</span>用 cat<span class="o">)</span>
+<span class="o">[</span>root@www ~]# grep <span class="s1">'^MANPATH'</span> /etc/man.config | head -n 3 |cat -A
+MANPATH^I/usr/man<span class="err">$</span>
+MANPATH^I/usr/share/man<span class="err">$</span>
+MANPATH^I/usr/local/man<span class="err">$</span>
+<span class="c"># 发现差别了吗？没错～ [tab] 按键可以被 cat -A 显示成为 ^I </span>
+
+范例三：承上，我将 <span class="o">[</span>tab] 按键配置成 6 个字符的话？
+<span class="o">[</span>root@www ~]# grep <span class="s1">'^MANPATH'</span> /etc/man.config | head -n 3 | <span class="se">\</span>
+<span class="gp">&gt;  </span>expand -t 6 - | cat -A
+MANPATH     /usr/man<span class="err">$</span>
+MANPATH     /usr/share/man<span class="err">$</span>
+MANPATH     /usr/local/man<span class="err">$</span>
+123456123456123456.....
+<span class="c"># 仔细看一下上面的数字说明，因为我是以 6 个字符来代表一个 [tab] 的长度，所以，</span>
+<span class="c"># MAN... 到 /usr 之间会隔 12 (两个 [tab]) 个字符喔！如果 tab 改成 9 的话，</span>
+<span class="c"># 情况就又不同了！这里也不好理解～您可以多配置几个数字来查阅就晓得！</span>
+</code></pre>
+</div>
+
+<h1 id="分割命令-split-将一个大文件依据文件大小或行数来分割就可以将大文件分割成为小文件">分割命令： split: 将一个大文件，依据文件大小或行数来分割，就可以将大文件分割成为小文件</h1>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# split <span class="o">[</span>-bl] file PREFIX
+选项与参数：
+-b  ：后面可接欲分割成的文件大小，可加单位，例如 b, k, m 等；
+-l  ：以行数来进行分割。
+PREFIX ：代表前导符的意思，可作为分割文件的前导文字。
+
+范例一：我的 /etc/termcap 有七百多K，若想要分成 300K 一个文件时？
+<span class="o">[</span>root@www ~]# <span class="nb">cd</span> /tmp; split -b 300k /etc/termcap termcap
+<span class="o">[</span>root@www tmp]# ll -k termcap<span class="k">*</span>
+-rw-r--r-- 1 root root 300 Feb  7 16:39 termcapaa
+-rw-r--r-- 1 root root 300 Feb  7 16:39 termcapab
+-rw-r--r-- 1 root root 189 Feb  7 16:39 termcapac
+<span class="c"># 那个档名可以随意取的啦！我们只要写上前导文字，小文件就会以</span>
+<span class="c"># xxxaa, xxxab, xxxac 等方式来创建小文件的！</span>
+
+范例二：如何将上面的三个小文件合成一个文件，档名为 termcapback
+<span class="o">[</span>root@www tmp]# cat termcap<span class="k">*</span> &gt;&gt; termcapback
+<span class="c"># 很简单吧？就用数据流重导向就好啦！简单！</span>
+
+范例三：使用 ls -al / 输出的信息中，每十行记录成一个文件
+<span class="o">[</span>root@www tmp]# ls -al / | split -l 10 - lsroot
+<span class="o">[</span>root@www tmp]# wc -l lsroot<span class="k">*</span>
+  10 lsrootaa
+  10 lsrootab
+   6 lsrootac
+  26 total
+<span class="c"># 重点在那个 - 啦！一般来说，如果需要 stdout/stdin 时，但偏偏又没有文件，</span>
+<span class="c"># 有的只是 - 时，那么那个 - 就会被当成 stdin 或 stdout ～</span>
+</code></pre>
+</div>
+
+<h1 id="参数代换-xargs">参数代换： xargs</h1>
+
+<p>使用 xargs 的原因是， 很多命令其实并不支持管线命令，因此我们可以透过 xargs 来提供该命令引用 standard input 之用</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# xargs <span class="o">[</span>-0epn] <span class="nb">command
+</span>选项与参数：
+-0  ：如果输入的 stdin 含有特殊字符，例如 <span class="sb">`</span>, <span class="se">\,</span> 空格键等等字符时，这个 -0 参数
+      可以将他还原成一般字符。这个参数可以用于特殊状态喔！
+-e  ：这个是 EOF <span class="o">(</span>end of file<span class="o">)</span> 的意思。后面可以接一个字符串，当 xargs 分析到
+      这个字符串时，就会停止继续工作！
+-p  ：在运行每个命令的 argument 时，都会询问使用者的意思；
+-n  ：后面接次数，每次 <span class="nb">command </span>命令运行时，要使用几个参数的意思。看范例三。
+当 xargs 后面没有接任何的命令时，默认是以 <span class="nb">echo </span>来进行输出喔！
+
+范例一：将 /etc/passwd 内的第一栏取出，仅取三行，使用 finger 这个命令将每个
+        账号内容秀出来
+<span class="o">[</span>root@www ~]# cut -d<span class="s1">':'</span> -f1 /etc/passwd |head -n 3| xargs finger
+Login: root                             Name: root
+Directory: /root                        Shell: /bin/bash
+Never logged <span class="k">in</span>.
+No mail.
+No Plan.
+......底下省略.....
+<span class="c"># 由 finger account 可以取得该账号的相关说明内容，例如上面的输出就是 finger root</span>
+<span class="c"># 后的结果。在这个例子当中，我们利用 cut 取出账号名称，用 head 取出三个账号，</span>
+<span class="c"># 最后则是由 xargs 将三个账号的名称变成 finger 后面需要的参数！</span>
+
+范例二：同上，但是每次运行 finger 时，都要询问使用者是否动作？
+<span class="o">[</span>root@www ~]# cut -d<span class="s1">':'</span> -f1 /etc/passwd |head -n 3| xargs -p finger
+finger root bin daemon ?...y
+.....<span class="o">(</span>底下省略<span class="o">)</span>....
+<span class="c"># 呵呵！这个 -p 的选项可以让用户的使用过程中，被询问到每个命令是否运行！</span>
+
+范例三：将所有的 /etc/passwd 内的账号都以 finger 查阅，但一次仅查阅五个账号
+<span class="o">[</span>root@www ~]# cut -d<span class="s1">':'</span> -f1 /etc/passwd | xargs -p -n 5 finger
+finger root bin daemon adm lp ?...y
+.....<span class="o">(</span>中间省略<span class="o">)</span>....
+finger uucp operator games gopher ftp ?...y
+.....<span class="o">(</span>底下省略<span class="o">)</span>....
+<span class="c"># 在这里鸟哥使用了 -p 这个参数来让您对于 -n 更有概念。一般来说，某些命令后面</span>
+<span class="c"># 可以接的 arguments 是有限制的，不能无限制的累加，此时，我们可以利用 -n</span>
+<span class="c"># 来帮助我们将参数分成数个部分，每个部分分别再以命令来运行！这样就 OK 啦！^_^</span>
+
+范例四：同上，但是当分析到 lp 就结束这串命令？
+<span class="o">[</span>root@www ~]# cut -d<span class="s1">':'</span> -f1 /etc/passwd | xargs -p -e<span class="s1">'lp'</span> finger
+finger root bin daemon adm ?...
+<span class="c"># 仔细与上面的案例做比较。也同时注意，那个 -e'lp' 是连在一起的，中间没有空格键。</span>
+<span class="c"># 上个例子当中，第五个参数是 lp 啊，那么我们下达 -e'lp' 后，则分析到 lp</span>
+<span class="c"># 这个字符串时，后面的其他 stdin 的内容就会被 xargs 舍弃掉了！</span>
+
+
+范例五：找出 /sbin 底下具有特殊权限的档名，并使用 ls -l 列出详细属性
+<span class="o">[</span>root@www ~]# find /sbin -perm +7000 | ls -l
+<span class="c"># 结果竟然仅有列出 root 所在目录下的文件！这不是我们要的！</span>
+<span class="c"># 因为 ll (ls) 并不是管线命令的原因啊！</span>
+
+<span class="o">[</span>root@www ~]# find /sbin -perm +7000 | xargs ls -l
+-rwsr-xr-x 1 root root 70420 May 25  2008 /sbin/mount.nfs
+-rwsr-xr-x 1 root root 70424 May 25  2008 /sbin/mount.nfs4
+-rwxr-sr-x 1 root root  5920 Jun 15  2008 /sbin/netreport
+....<span class="o">(</span>底下省略<span class="o">)</span>....
+</code></pre>
+</div>
+
+<h1 id="关于减号的用途">关于减号的用途</h1>
+<p>在管线命令当中，常常会使用到前一个命令的 stdout 作为这次的 stdin ， 某些命令需要用到文件名 (例如 tar) 来进行处理时，该 stdin 与 stdout 可以利用减号 “-“ 来替代， 举例来说：</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">[</span>root@www ~]# tar -cvf - /home | tar -xvf -
+</code></pre>
+</div>
+
+<p>上面这个例子是说：『我将 /home 里面的文件给他打包，但打包的数据不是纪录到文件，而是传送到 stdout； 经过管线后，将 tar -cvf - /home 传送给后面的 tar -xvf - 』。后面的这个 - 则是取用前一个命令的 stdout， 因此，我们就不需要使用 file 了！这是很常见的例子喔！注意注意！</p>
+
+<h1 id="reference">Reference</h1>
+<p><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php">鸟哥的Linux私房菜 － 管线命令(Pipe)</a></p>
+
+
+         </div>
+    </div>  
+</section>
+
+
+
+
+    
+<!-- Footer -->
+<section id="footer">
+    <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <p></p>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
+            
+            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
+            
+            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright &copy; Shujin Wu 2017</li>
+        </ul>
+    </div>
+</section>
+
+</div>
+<!-- Scripts -->
+<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+
+
+
+
+
+
+</body>
+
+
+<!-- Mirrored from suzywu2014.github.io/linux/2016/06/07/Bash-Pipe by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:55 GMT -->
+</html>
+

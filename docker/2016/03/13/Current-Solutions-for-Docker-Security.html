@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from suzywu2014.github.io/docker/2016/03/13/Current-Solutions-for-Docker-Security by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Suzy Wu's blog">
+
+    <title>Current Solutions for Docker Security - Shujin Wu</title>
+
+<!--     <link rel="canonical" href="http://suzywu2014.github.io/docker/2016/03/13/Current-Solutions-for-Docker-Security"> -->
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+	<!-- MathJax -->
+	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			<!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+			inlineMath: [ ['$','$'] ],
+			<!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+			displayMath: [ ['$$','$$'] ],
+			processEscapes: true
+		},
+		"HTML-CSS": { availableFonts: ["TeX"] },
+		<!-- displayAlign: "left" -->
+	});
+	</script>
+</head>
+
+
+<body>
+    <!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Shujin Wu</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../../../../index-3.html">Home</a></li>
+                <li><a href="../../../../resume.html">résumé</a></li>
+                <li><a href="../../../../resources.html">Resources</a></li>
+                <li><a href="../../../../categories.html">Notes</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    
+<section id="wrapper">
+    <header>
+        <div class="inner">
+            <h2>Current Solutions for Docker Security</h2> 
+            <p>Posted by Shujin Wu on March 13, 2016</p> 
+        </div>
+    </header>
+    <div class="wrapper">
+         <div class="inner">
+         
+<p>This article summarizes the current security solutions for  Docker containers. I will review the solutions that are brought by the Docker implementation, then discuss how to enhance it when running Docker in production.</p>
+
+<h2 id="possible-security-issues-in-a-container-based-environment">Possible Security Issues in a container-based environment</h2>
+<p>Before we jump into the security solutions, let’s exploring some of the issues surrounding the security of container-based systems. Generally speaking, there are three types of attack models, which are caused by the vulnerabilities of the container-based systems.</p>
+
+<h3 id="types-of-attacks">Types of Attacks:</h3>
+
+<ul>
+  <li>Container compromise: result in illegitimate data access and affect control flow of instructions</li>
+  <li>DoS(Deny of Services): disturb normal operation of the host or other container</li>
+  <li>Privilege escalation: obtain a provilege which is not originally granted to the container</li>
+</ul>
+
+<h3 id="disclosed-vulnerabilities">Disclosed Vulnerabilities:</h3>
+
+<ul>
+  <li>Namespacing Issues
+Docker containers utilize Kernel namespaces to provide a certain level of isolation. However, not all resources are namespaced:
+    <ul>
+      <li>UID: Causing “root” user vulnerability</li>
+      <li>Kernel keyring: containers running with a user of the same UID will have access to the same keys if they are handled by kernel keyring</li>
+      <li>Kernel &amp; its modules: Loaded modules become available across all containers and the hot</li>
+      <li>Devices: includes disk drives, sound-cards,GPU, etc.</li>
+      <li>System time: The SYSTEM_TIME capability is disabled by default, but if it’s enabled, we will need to worry about it.</li>
+    </ul>
+  </li>
+  <li>Kernel Exploit
+Container-based applications share the same host kernel, namely, flaws in  the host kernel might allow malicious containers to escape and gain access over the over whole system.</li>
+  <li>DoS Attacks
+Since all containers share kernel resources, if one container or one user monopolize access to certain resource, it will starve out other containers on the host.</li>
+  <li>Container Breakout
+Because users are not namespaced, any process that break out if the container will have the same privileges on the host as it did in the container. For example, if you were root in the container, you will be root on the host. It’s a typical privilege escalation attack , unlikely happen, but possible.</li>
+  <li>Poisoned Images
+It’s possible for attackers ro modify/embed malicious program into the image and trick users to download such corrupt images</li>
+  <li>Compromising secrets
+It’s likely to require a secret to access a database or sevices. An attacker who can get access to this secret will also have access to the service.This problem becomes more acute in a microservice architecture in which containers are constantly stopping and starting.</li>
+</ul>
+
+<h2 id="current-solutions">Current Solutions:</h2>
+<p>Now Let’s take a look at what security solutions that come with Docker implementation and what strategies or techniques that are used in production.</p>
+
+<h3 id="least-privileges">Least Privileges</h3>
+<p>One of the most important principle to achieve container security is Least Privileges: each process and container should run with the minimum set of access rights and resources it needs to perform its function. This includes the actions to reduce the capabilities of containers:</p>
+
+<ul>
+  <li> Do not run processes in a container as root to avoid root access from attackers.</li>
+  <li> Run filesystems as read-only so that attackers can not overwrite data or save malicious scripts to file.</li>
+  <li> Cut down the kernel Calls that a container can make to reduce the potential attack surface.</li>
+  <li> Limit the resources that a container can use</li>
+</ul>
+
+<p>This Least Privileges approach reduced the possibility that the attacker can access or exploit data or resources via a compromised container.</p>
+
+<h3 id="internal-security-solutions">Internal Security Solutions</h3>
+<p>Containers can leverage on Linux Namespace and Control group to provide a certain level of isolation and resource limitation.</p>
+
+<h4 id="namespace">Namespace</h4>
+<p>Docker provides process, filesystem, device, IPC and net- work isolations by using the related namespace.</p>
+
+<ul>
+  <li>Process Isolation: Docker utilizes PID namespace to separate container processes from the host as well as other containers, so that processes in a container can’t observe or do anything to the other processes running in the host or in other containers.</li>
+  <li>Filesystem Isolation: Use mount namespace to ensure that for each mount space, a container only have impact inside the container.</li>
+  <li>Device Isolation: The container cannot access to any devices unless it’s privileged.</li>
+  <li>IPC Isolation: Utilize IPC namespace to prevent the processes in a container from interfering with those in other containers.</li>
+  <li>Network Isolation: Use network namespace so that each container has its own IP address, IP routing tables, network device, etc.</li>
+</ul>
+
+<h4 id="control-group">Control Group</h4>
+<p>Docker employs Cgroup to control the amount of resources, such as CPU, memory, and disk I/O, that a container can use. Under this control, each container are guaranteed a fair share of the resources but preventing from consuming all resources.</p>
+
+<h3 id="linux-kernel-security-systems">Linux Kernel Security Systems</h3>
+<p>Kernel security system, such as Linux capabilities are existed to harden the security of a Linux host system. We can also use them to secure the host from containers.</p>
+
+<p>By default, containers disable a large amount of Linux capabilities from its containers in order to prevent an attacker to damage the host system when a container is compromised. And it also allows configuration of capabilities that a container can use.</p>
+
+<h3 id="inux-security-modulelsm">inux Security Module(LSM)</h3>
+<p>Two most popular LSM will be AppArmor and SELinux.</p>
+
+<h4 id="selinux">SELinux</h4>
+<p>SElinux is a labeling system, that implements Mandatory access control using labels. Every object, such as process, file/directory, network ports, devices, etc, has a label, and we write riles to control the access of an object.</p>
+
+<h4 id="apparmor">AppArmor</h4>
+<p>AppArmor is a security enhancement model to Linux based on Mandatory Access Control like SELinux. It permits the administrator to load a security profile into each program, which limits the capabilities of the program.</p>
+
+<h3 id="other-approach">Other Approach</h3>
+
+<h4 id="seccomp">Seccomp</h4>
+<p>The Linux seccomp(or secure computing mode) facility can be used to restrict the system calls that can be made by a process. namely, containers can be locked down to a specified set of system calls.</p>
+
+<h2 id="in-production">In Production</h2>
+<p>In production, we  leverage on the security solutions we have mentioned above and apply proper operations in order to provide a more secure and efficient system. There are major three secure tips in production.</p>
+
+<h3 id="segregate-containers-by-host">Segregate Containers by Host</h3>
+<p>The main reason to place each user on a separate Docker Host is to minimize the loss when constainer breakout happens. If multiple users are sharing one host, if a user monipolizes all the memory on the host, it will starve out other users. Even worse, if constainer breakouts happen, a user could possibly gain access to another users’ containers or data through the compromised container.</p>
+
+<p>Therefore, although this approach is less efficient than sharing hosts between users and will result in a highter number of VMs and/or machines than reusing hosts, it’s important for security.</p>
+
+<p>Another similar solution would be separate containers with sensitive  information from less-sensitive ones for the similar reason.</p>
+
+<h3 id="applying-updates">Applying Updates</h3>
+<p>Just like what is recommended for Windows system, it’s recommended to apply updates regularly. This includes updating base images and dependent images to fix the vulnerabilities in common utilities and framework. At times, we need to update Docker daemon to gain access to new feature, security patches or bug fixes. Removing unsupported drivers is also important, because those could be a security risk since it won’t be receiving the same attension and updates as other parts of Docker.</p>
+
+<h3 id="image-provenance">Image Provenance</h3>
+<p>To safely use images, you need to have guarantees about their provenance:</p>
+
+<ul>
+  <li>where they came from</li>
+  <li>who created them</li>
+  <li>essure you are getting the exactly the image you want</li>
+</ul>
+
+<p>There are three solutions  for image provenace: secure hash, secure signing and verification infrastructure and use Dockerfile properly.</p>
+
+<ul>
+  <li>Secure Hash:  Secure Hash is like a fingerprint for data. It’s a small string that is unique to given data. If you have a secure hash for some data and the data itself, you can recalculate the hash for the data then compare.  In docker, it’s called docker digest, a SHA-256 hash of a filesystem layer or manifest(a metadata file describing the parts of a image, constaining a list of constituent layer identified by digest)</li>
+  <li>Secure Signing and Verification Infrastructure:  Data could be changed if it transits over untrustworthy channels(e.g. HTTP), so we need to ensure we are publishing and accessing content in a trustworthy and secure manner. Notaty project is an on-going secure signing and verification infrastructure project in docker, which compares a checksum for a downloaded file with the checksum in Notary’s trusted collection for the file source (e.g. docker.com ). For more details, please check https://github.com/docker/notary</li>
+  <li>Dockerfile:  Not as we expected, dockerfile is likely to produce different images over time, so as time goes, it’s hard to be sure what is in your images. To use docker properly, you would:
+    <ul>
+      <li>Always specify a tag in FROM instruction, and use digest to pull the exactly same image each time</li>
+      <li>Provide version numbers when installing software from package managers. However, since package dependencies can change over time, sometime we need to use tools (e.g. aptly) to take a snapshot of the repository</li>
+      <li>Verify any software or data download from the internet by checksum or cryptographic.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>END: This article is an glance of the current security solutions for docker containers, if you are interested, please refer to the reference articles for more details.</p>
+
+<h2 id="references">References:</h2>
+<p>[1] Analysis of Docker Security
+[2] Docker Security - Using Containers Safely in Production
+[3] Docker Doc - Docker Security</p>
+
+         </div>
+    </div>  
+</section>
+
+
+
+
+    
+<!-- Footer -->
+<section id="footer">
+    <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <p></p>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
+            
+            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
+            
+            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright &copy; Shujin Wu 2017</li>
+        </ul>
+    </div>
+</section>
+
+</div>
+<!-- Scripts -->
+<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+
+
+
+
+
+
+</body>
+
+
+<!-- Mirrored from suzywu2014.github.io/docker/2016/03/13/Current-Solutions-for-Docker-Security by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:52 GMT -->
+</html>
+

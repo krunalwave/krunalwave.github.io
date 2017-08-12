@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from suzywu2014.github.io/coprhd/2016/02/18/CoprHD-as-a-SDS-Controller by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:22:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Suzy Wu's blog">
+
+    <title>CoprHD as a SDS Controller - Shujin Wu</title>
+
+<!--     <link rel="canonical" href="http://suzywu2014.github.io/coprhd/2016/02/18/CoprHD-as-a-SDS-Controller"> -->
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+	<!-- MathJax -->
+	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			<!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+			inlineMath: [ ['$','$'] ],
+			<!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+			displayMath: [ ['$$','$$'] ],
+			processEscapes: true
+		},
+		"HTML-CSS": { availableFonts: ["TeX"] },
+		<!-- displayAlign: "left" -->
+	});
+	</script>
+</head>
+
+
+<body>
+    <!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Shujin Wu</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../../../../index-3.html">Home</a></li>
+                <li><a href="../../../../resume.html">résumé</a></li>
+                <li><a href="../../../../resources.html">Resources</a></li>
+                <li><a href="../../../../categories.html">Notes</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    
+<section id="wrapper">
+    <header>
+        <div class="inner">
+            <h2>CoprHD as a SDS Controller</h2> 
+            <p>Posted by Shujin Wu on February 18, 2016</p> 
+        </div>
+    </header>
+    <div class="wrapper">
+         <div class="inner">
+         
+<h2 id="coprhd-overview">CoprHD Overview:</h2>
+<p>CoprHD  is an open source software defined storage (SDS) controller that discovers, pools and automates the management of a heterogeneous(合成的) storage ecosystem.</p>
+
+<ul>
+  <li>Discover different kinds of  storage systems and provide visibility and control of all discovered resources.
+    <ul>
+      <li>Namely, it centralizes and transforms multivendor storage into a simple and extensible platform.</li>
+      <li>e.g. traditional, scale-out, SAN/IP networking, host config, across one or more DCs for new and existing storage.</li>
+    </ul>
+  </li>
+  <li>Classify storage using policies20
+    <ul>
+      <li>abstracts the resources into virtual storage arrays and pools</li>
+      <li>capable of block, object and file storage provider</li>
+    </ul>
+  </li>
+  <li>Self-service provisioning via REST APIs and catalogs</li>
+  <li>Integrate with traditional, cloud, cloud native computing stacks</li>
+  <li>End to end storage automation
+    <ul>
+      <li>Provide intelligent resource selection and placement</li>
+      <li>Local and remote protection</li>
+      <li>SAN Zoning</li>
+      <li>Host attach, migration and tech refresh</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="note">Note:</h3>
+<ul>
+  <li>CoprHD itself does not provide storage.</li>
+  <li>It holds an inventory of all storage devices in the data center and understands their connectivity.</li>
+  <li>It allows the storage administrator to group these resources into either virtual arrays or virtual pools</li>
+</ul>
+
+<h2 id="concepts-sds-controller">Concepts: SDS Controller</h2>
+
+<p>SDS Controller enables granular(粒化) monitoring and QoS enforcement of storage data types(Volume, shares, containers)</p>
+
+<ul>
+  <li>Discover storage systems and capabilities. e.g. performance, capacity, tiers(层). etc</li>
+  <li>Administrators composed  virtual storage pools</li>
+  <li>Application  request storages services using  SLOs
+    <ul>
+      <li>Controller allocates storage volume from pool that can best service the request</li>
+    </ul>
+  </li>
+  <li>Storage gets assigned to applivation in VM</li>
+  <li>Controller work with compute, network to set QoS</li>
+</ul>
+
+<h3 id="note-1">Note:</h3>
+
+<h4 id="storage-quality-of-service-qos">Storage Quality of Service (QoS):</h4>
+<p>Storage QoS is a new cluster-wide feature in clustered Data ONTAP 8.2 that requires no additional license. It allows users to set throughput limits and/or monitor IOPS or MB/s on the storage object. A storage object can be:</p>
+
+<ul>
+  <li>A Vserver with FlexVol volumes</li>
+  <li>A FlexVol volumeQoS workload</li>
+  <li>A LUN</li>
+  <li>A file (typically represents a virtual machine)</li>
+</ul>
+
+<h4 id="service-level-agreement-sla-">Service Level Agreement (SLA) :</h4>
+
+<ul>
+  <li>A part of a service contract where a service is formally defined.</li>
+  <li>Refer to the  contracted delivery time (of the service or perfromance)</li>
+  <li>Include :
+    <ul>
+      <li>MTBF: mean time between failures</li>
+      <li>MTTR: mean time to repair or mean time ti recovery</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="service-level-objective-slo">Service Level Objective (SLO):</h4>
+
+<ul>
+  <li>a key element of SLA between a service provider and a customer</li>
+  <li>a means of measuring the performance of the service provider</li>
+  <li>avoiding disputes(争议) between the two parties based on misunderstanding.</li>
+</ul>
+
+<h2 id="references">References:</h2>
+
+<p>[1] Delivering a standards based SDS Framework with an Open Stack SDS Controller Implementation
+[2] Introduction to CoprHD: An Open Source Software Defined Storage Controller
+[3] A short Guild to the CoprHD Architecture
+[4] FAQ: Storage Quality of Service (QoS)</p>
+
+
+         </div>
+    </div>  
+</section>
+
+
+
+
+    
+<!-- Footer -->
+<section id="footer">
+    <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <p></p>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
+            
+            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
+            
+            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright &copy; Shujin Wu 2017</li>
+        </ul>
+    </div>
+</section>
+
+</div>
+<!-- Scripts -->
+<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+
+
+
+
+
+
+</body>
+
+
+<!-- Mirrored from suzywu2014.github.io/coprhd/2016/02/18/CoprHD-as-a-SDS-Controller by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:22:22 GMT -->
+</html>
+

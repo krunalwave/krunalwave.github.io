@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from suzywu2014.github.io/python/2016/06/22/python-wiki by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Suzy Wu's blog">
+
+    <title>Wiki - Python - Shujin Wu</title>
+
+<!--     <link rel="canonical" href="http://suzywu2014.github.io/python/2016/06/22/python-wiki"> -->
+
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+	<!-- MathJax -->
+	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			<!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+			inlineMath: [ ['$','$'] ],
+			<!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+			displayMath: [ ['$$','$$'] ],
+			processEscapes: true
+		},
+		"HTML-CSS": { availableFonts: ["TeX"] },
+		<!-- displayAlign: "left" -->
+	});
+	</script>
+</head>
+
+
+<body>
+    <!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Shujin Wu</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../../../../index-3.html">Home</a></li>
+                <li><a href="../../../../resume.html">résumé</a></li>
+                <li><a href="../../../../resources.html">Resources</a></li>
+                <li><a href="../../../../categories.html">Notes</a></li>
+                <li><a href="../../../../archive.html">Archive</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    
+<section id="wrapper">
+    <header>
+        <div class="inner">
+            <h2>Wiki - Python</h2> 
+            <p>Posted by Shujin Wu on June 22, 2016</p> 
+        </div>
+    </header>
+    <div class="wrapper">
+         <div class="inner">
+         
+<h1 id="printing-printing">Printing, Printing</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span> <span class="s">"Mary had a little lamb."</span>
+<span class="k">print</span> <span class="s">"Its fleece was white as </span><span class="si">%</span><span class="s">s."</span> <span class="o">%</span> <span class="s">'snow'</span>
+<span class="k">print</span> <span class="s">"."</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="n">end1</span> <span class="o">=</span> <span class="s">"C"</span>
+<span class="n">end2</span> <span class="o">=</span> <span class="s">"h"</span>
+<span class="k">print</span> <span class="n">end1</span> <span class="o">+</span> <span class="n">end2</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">python</span> <span class="n">ex7</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Mary</span> <span class="n">had</span> <span class="n">a</span> <span class="n">little</span> <span class="n">lamb</span><span class="o">.</span>
+<span class="n">Its</span> <span class="n">fleece</span> <span class="n">was</span> <span class="n">white</span> <span class="k">as</span> <span class="n">snow</span><span class="o">.</span>
+<span class="o">..........</span>
+<span class="n">Ch</span>
+</code></pre>
+</div>
+
+<h2 id="r"><code class="highlighter-rouge">%r</code></h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># %r</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="s">"</span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r"</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="s">"one"</span><span class="p">,</span> <span class="s">"two"</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="s">"four"</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span><span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">formatter</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="s">"I had this thing."</span><span class="p">,</span>
+    <span class="s">"That you could type up right."</span><span class="p">,</span>
+    <span class="s">"But it didn't sing."</span><span class="p">,</span>
+    <span class="s">"So I said goodnight."</span>
+<span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">python</span> <span class="n">ex8</span><span class="o">.</span><span class="n">py</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+<span class="s">'one'</span> <span class="s">'two'</span> <span class="s">'three'</span> <span class="s">'four'</span>
+<span class="bp">True</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">True</span>
+<span class="s">'</span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r'</span> <span class="s">'</span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r'</span> <span class="s">'</span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r'</span> <span class="s">'</span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r </span><span class="si">%</span><span class="s">r'</span>
+<span class="s">'I had this thing.'</span> <span class="s">'That you could type up right.'</span> <span class="s">"But it didn't sing."</span> <span class="s">'So I said goodnight.'</span>
+</code></pre>
+</div>
+
+<p>Why does %r sometimes print things with single-quotes when I wrote them with double-quotes?</p>
+<ul>
+  <li>Python is going to print the strings in the most efficient way it can, not replicate exactly the way you wrote them.</li>
+</ul>
+
+<h2 id="escape-sequences">Escape Sequences</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">\\</code>  Backslash <code class="highlighter-rouge">(\)</code></li>
+  <li><code class="highlighter-rouge">\'</code>  Single-quote <code class="highlighter-rouge">(')</code></li>
+  <li><code class="highlighter-rouge">\"</code>  Double-quote <code class="highlighter-rouge">(")</code></li>
+  <li><code class="highlighter-rouge">\a</code>  ASCII bell (BEL)</li>
+  <li><code class="highlighter-rouge">\b</code>  ASCII backspace (BS)</li>
+  <li><code class="highlighter-rouge">\f</code>  ASCII formfeed (FF)</li>
+  <li><code class="highlighter-rouge">\n</code>  ASCII linefeed (LF)</li>
+  <li><code class="highlighter-rouge">\N{name}</code>    Character named name in the Unicode database (Unicode only)</li>
+  <li><code class="highlighter-rouge">\r</code>  Carriage Return (CR)</li>
+  <li><code class="highlighter-rouge">\t</code>  Horizontal Tab (TAB)</li>
+  <li><code class="highlighter-rouge">\uxxxx</code>  Character with 16-bit hex value xxxx (Unicode only)</li>
+  <li><code class="highlighter-rouge">\Uxxxxxxxx</code>  Character with 32-bit hex value xxxxxxxx (Unicode only)</li>
+  <li><code class="highlighter-rouge">\v</code>  ASCII vertical tab (VT)</li>
+  <li><code class="highlighter-rouge">\ooo</code>    Character with octal value ooo</li>
+  <li><code class="highlighter-rouge">\xhh</code>    Character with hex value hh</li>
+</ul>
+
+<h2 id="-or-"><code class="highlighter-rouge">'''</code> or <code class="highlighter-rouge">"""</code></h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">s1</span> <span class="o">=</span> <span class="s">'''This string contains """ so use triple-single-quotes.'''</span> <span class="c"># print """</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="s">"""This string contains ''' so use triple-double-quotes."""</span> <span class="c"># print '''</span>
+</code></pre>
+</div>
+
+<h2 id="s-or-r"><code class="highlighter-rouge">%s</code> or <code class="highlighter-rouge">%r</code></h2>
+
+<ul>
+  <li><code class="highlighter-rouge">%r</code> is printing out the raw representation of what you typed, include the original escape sequences. For debugging</li>
+  <li><code class="highlighter-rouge">%s</code> for displaying.</li>
+</ul>
+
+<h1 id="get-user-input">get user input</h1>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">age</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+<span class="nb">input</span><span class="p">()</span> <span class="c"># will try to convert things you enter as if they were Python code, but it has security problems so you should avoid it.</span>
+<span class="n">age</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"How old are you? "</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h1 id="argv">argv</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="k">print</span> <span class="s">"The script is called:"</span><span class="p">,</span> <span class="n">script</span>
+<span class="k">print</span> <span class="s">"Your first variable is:"</span><span class="p">,</span> <span class="n">first</span>
+<span class="k">print</span> <span class="s">"Your second variable is:"</span><span class="p">,</span> <span class="n">second</span>
+<span class="k">print</span> <span class="s">"Your third variable is:"</span><span class="p">,</span> <span class="n">third</span>
+</code></pre>
+</div>
+
+<h1 id="file-io">file IO</h1>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span>
+
+<span class="n">txt</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">"Here's your file </span><span class="si">%</span><span class="s">r:"</span> <span class="o">%</span> <span class="n">filename</span>
+<span class="k">print</span> <span class="n">txt</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">"Type the filename again:"</span>
+<span class="n">file_again</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"&gt; "</span><span class="p">)</span>
+
+<span class="n">txt_again</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_again</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">txt_again</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">indata</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">from_file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">close</code> – Closes the file. Like File-&gt;Save.. in your editor.</li>
+  <li><code class="highlighter-rouge">read</code> – Reads the contents of the file. You can assign the result to a variable.</li>
+  <li><code class="highlighter-rouge">readline</code> – Reads just one line of a text file.</li>
+  <li><code class="highlighter-rouge">truncate</code> – Empties the file. Watch out if you care about the file.</li>
+  <li><code class="highlighter-rouge">write('stuff')</code> – Writes “stuff” to the file.</li>
+</ul>
+
+<h1 id="functions">Functions</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_two</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">print</span> <span class="s">"arg1: </span><span class="si">%</span><span class="s">r, arg2: </span><span class="si">%</span><span class="s">r"</span> <span class="o">%</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+
+<span class="c"># ok, that *args is actually pointless, we can just do this</span>
+<span class="k">def</span> <span class="nf">print_two_again</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"arg1: </span><span class="si">%</span><span class="s">r, arg2: </span><span class="si">%</span><span class="s">r"</span> <span class="o">%</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+
+<span class="c"># this just takes one argument</span>
+<span class="k">def</span> <span class="nf">print_one</span><span class="p">(</span><span class="n">arg1</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"arg1: </span><span class="si">%</span><span class="s">r"</span> <span class="o">%</span> <span class="n">arg1</span>
+
+<span class="c"># this one takes no arguments</span>
+<span class="k">def</span> <span class="nf">print_none</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">"I got nothin'."</span>
+
+
+<span class="n">print_two</span><span class="p">(</span><span class="s">"Zed"</span><span class="p">,</span><span class="s">"Shaw"</span><span class="p">)</span>
+<span class="n">print_two_again</span><span class="p">(</span><span class="s">"Zed"</span><span class="p">,</span><span class="s">"Shaw"</span><span class="p">)</span>
+<span class="n">print_one</span><span class="p">(</span><span class="s">"First!"</span><span class="p">)</span>
+<span class="n">print_none</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h1 id="module---urllib">Module - urllib</h1>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">"http://www.baidu.com"</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span> <span class="c">#data默认为空None，timeout默认为 socket._GLOBAL_DEFAULT_TIMEOUT</span>
+
+<span class="c"># alternative way</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s">"http://www.baidu.com"</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="post---eg-login">Post - eg. login</h2>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s">"username"</span><span class="p">:</span><span class="s">"1016903103@qq.com"</span><span class="p">,</span><span class="s">"password"</span><span class="p">:</span><span class="s">"XXXX"</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="c">#values = {}</span>
+<span class="c">#values['username'] = "1016903103@qq.com"</span>
+<span class="c">#values['password'] = "XXXX"</span>
+<span class="c">#data = urllib.urlencode(values)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+</code></pre>
+</div>
+
+<h2 id="get">get</h2>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">values</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">values</span><span class="p">[</span><span class="s">'username'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"1016903103@qq.com"</span>
+<span class="n">values</span><span class="p">[</span><span class="s">'password'</span><span class="p">]</span><span class="o">=</span><span class="s">"XXXX"</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"http://passport.csdn.net/account/login"</span>
+<span class="n">geturl</span> <span class="o">=</span> <span class="n">url</span> <span class="o">+</span> <span class="s">"?"</span><span class="o">+</span><span class="n">data</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">geturl</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="construct-header">construct header</h2>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'http://www.server.com/login'</span>
+<span class="n">user_agent</span> <span class="o">=</span> <span class="s">'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="s">'username'</span> <span class="p">:</span> <span class="s">'cqc'</span><span class="p">,</span>  <span class="s">'password'</span> <span class="p">:</span> <span class="s">'XXXX'</span> <span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span> <span class="s">'User-Agent'</span> <span class="p">:</span> <span class="n">user_agent</span> <span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">urldata</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="range-vs-xrange"><code class="highlighter-rouge">range()</code> vs <code class="highlighter-rouge">xrange</code></h2>
+
+<ul>
+  <li>In python 3, range() does what xrange() used to do and xrange() does not exist. If you want to write code that will run on both Python 2 and Python 3, you can’t use xrange().</li>
+  <li>range() can actually be faster in some cases - eg. if iterating over the same sequence multiple times.  xrange() has to reconstruct the integer object every time, but range() will have real integer objects. (It will always perform worse in terms of memory however)</li>
+  <li>xrange() isn’t usable in all cases where a real list is needed. For instance, it doesn’t support slices, or any list methods.</li>
+</ul>
+
+         </div>
+    </div>  
+</section>
+
+
+
+
+    
+<!-- Footer -->
+<section id="footer">
+    <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <p></p>
+        <ul class="contact">
+            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
+            
+            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
+            
+            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright &copy; Shujin Wu 2017</li>
+        </ul>
+    </div>
+</section>
+
+</div>
+<!-- Scripts -->
+<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+<script src="../../../../assets/themes/solid-state/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+
+
+
+
+
+
+</body>
+
+
+<!-- Mirrored from suzywu2014.github.io/python/2016/06/22/python-wiki by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:53 GMT -->
+</html>
+
