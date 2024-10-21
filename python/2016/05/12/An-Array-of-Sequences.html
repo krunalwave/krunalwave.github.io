@@ -1,36 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 
 <!-- Mirrored from suzywu2014.github.io/python/2016/05/12/An-Array-of-Sequences by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:53 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Suzy Wu's blog">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Suzy Wu's blog">
 
-    <title>Python - An Array of Sequences - Shujin Wu</title>
+  <title>Python - An Array of Sequences - Krunal Patel</title>
 
-<!--     <link rel="canonical" href="http://suzywu2014.github.io/python/2016/05/12/An-Array-of-Sequences"> -->
+  <!--     <link rel="canonical" href="http://suzywu2014.github.io/python/2016/05/12/An-Array-of-Sequences"> -->
 
-	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
-	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+  <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
-	<!-- MathJax -->
-	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+  <!-- MathJax -->
+  <script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"
+    type="text/javascript"></script>
 
-	<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],
 		jax: ["input/TeX", "output/HTML-CSS"],
@@ -49,129 +51,140 @@
 
 
 <body>
-    <!-- Page Wrapper -->
-<div id="page-wrapper">
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        <h1><a href="index.html">Shujin Wu</a></h1>
-        <nav>
-            <a href="#menu">Menu</a>
-        </nav>
+      <h1><a href="index.html">Krunal Patel</a></h1>
+      <nav>
+        <a href="#menu">Menu</a>
+      </nav>
     </header>
 
     <!-- Menu -->
     <nav id="menu">
-        <div class="inner">
-            <h2>Menu</h2>
-            <ul class="links">
-                <li><a href="../../../../index-3.html">Home</a></li>
-                <li><a href="../../../../resume.html">résumé</a></li>
-                <li><a href="../../../../resources.html">Resources</a></li>
-                <li><a href="../../../../categories.html">Notes</a></li>
-                <li><a href="../../../../archive.html">Archive</a></li>
-            </ul>
-            <a href="#" class="close">Close</a>
-        </div>
+      <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+          <li><a href="../../../../index.html">Home</a></li>
+          <li><a href="../../../../resume.html">Resume</a></li>
+          <li><a href="../../../../resources.html">Resources</a></li>
+          <li><a href="../../../../categories.html">Notes</a></li>
+          <li><a href="../../../../archive.html">Archive</a></li>
+        </ul>
+        <a href="#" class="close">Close</a>
+      </div>
     </nav>
 
-    
-<section id="wrapper">
-    <header>
+
+    <section id="wrapper">
+      <header>
         <div class="inner">
-            <h2>Python - An Array of Sequences</h2> 
-            <p>Posted by Shujin Wu on May 12, 2016</p> 
+          <h2>Python - An Array of Sequences</h2>
+          <p>Posted by Krunal Patel on May 12, 2016</p>
         </div>
-    </header>
-    <div class="wrapper">
-         <div class="inner">
-         
-<h1 id="types-of-sequences">Types of sequences</h1>
+      </header>
+      <div class="wrapper">
+        <div class="inner">
 
-<h2 id="container-versus-flat">Container versus Flat</h2>
+          <h1 id="types-of-sequences">Types of sequences</h1>
 
-<ul>
-  <li>Container sequences - can hold items of different types
-    <ul>
-      <li>list, tuple, and collections.deque</li>
-    </ul>
-  </li>
-  <li>Flat sequences - hold items of one type (within its own memory space, limited to primitive values)
-    <ul>
-      <li>str, bytes, bytearray, memoryview, and array.array</li>
-    </ul>
-  </li>
-</ul>
+          <h2 id="container-versus-flat">Container versus Flat</h2>
 
-<h2 id="mutable-versus-immutable">Mutable versus Immutable</h2>
+          <ul>
+            <li>Container sequences - can hold items of different types
+              <ul>
+                <li>list, tuple, and collections.deque</li>
+              </ul>
+            </li>
+            <li>Flat sequences - hold items of one type (within its own memory space, limited to primitive values)
+              <ul>
+                <li>str, bytes, bytearray, memoryview, and array.array</li>
+              </ul>
+            </li>
+          </ul>
 
-<ul>
-  <li>Mutable sequences
-    <ul>
-      <li>list, bytearray, array.array, collections.deque, and memoryview</li>
-    </ul>
-  </li>
-  <li>Immutable sequences
-    <ul>
-      <li>tuple, str, and bytes</li>
-    </ul>
-  </li>
-</ul>
+          <h2 id="mutable-versus-immutable">Mutable versus Immutable</h2>
 
-<h1 id="list-comprehensions-and-generator-expressions">List Comprehensions and Generator Expressions</h1>
+          <ul>
+            <li>Mutable sequences
+              <ul>
+                <li>list, bytearray, array.array, collections.deque, and memoryview</li>
+              </ul>
+            </li>
+            <li>Immutable sequences
+              <ul>
+                <li>tuple, str, and bytes</li>
+              </ul>
+            </li>
+          </ul>
 
-<h2 id="example-of-listcomp">example of Listcomp</h2>
+          <h1 id="list-comprehensions-and-generator-expressions">List Comprehensions and Generator Expressions</h1>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">symbols</span> <span class="o">=</span> <span class="s">'$¢£¥€¤'</span>
+          <h2 id="example-of-listcomp">example of Listcomp</h2>
+
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">symbols</span> <span class="o">=</span> <span class="s">'$¢£¥€¤'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">codes</span>
 <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">163</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">8364</span><span class="p">,</span> <span class="mi">164</span><span class="p">]</span>
 </code></pre>
-</div>
-<h2 id="notes">Notes</h2>
+          </div>
+          <h2 id="notes">Notes</h2>
 
-<h3 id="cartesian-products-arranged-by-color-first">Cartesian products: arranged by color first</h3>
+          <h3 id="cartesian-products-arranged-by-color-first">Cartesian products: arranged by color first</h3>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'white'</span><span class="p">]</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'white'</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'S'</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="s">'L'</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tshirts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">colors</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">tshirts</span>
 <span class="p">[(</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'S'</span><span class="p">),</span> <span class="p">(</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'M'</span><span class="p">),</span> <span class="p">(</span><span class="s">'black'</span><span class="p">,</span> <span class="s">'L'</span><span class="p">),</span> <span class="p">(</span><span class="s">'white'</span><span class="p">,</span> <span class="s">'S'</span><span class="p">),</span>
 <span class="p">(</span><span class="s">'white'</span><span class="p">,</span> <span class="s">'M'</span><span class="p">),</span> <span class="p">(</span><span class="s">'white'</span><span class="p">,</span> <span class="s">'L'</span><span class="p">)]</span>
 </code></pre>
-</div>
+          </div>
 
-<h3 id="line-breaks-are-ignored-inside-pairs-of---or--means-you-can-do-following-without-use-">Line breaks are ignored inside pairs of <code class="highlighter-rouge">[]</code>, <code class="highlighter-rouge"><span class="p">{}</span></code> or <code class="highlighter-rouge">()</code>. Means you can do following without use <code class="highlighter-rouge">"\"</code></h3>
+          <h3 id="line-breaks-are-ignored-inside-pairs-of---or--means-you-can-do-following-without-use-">Line breaks are
+            ignored inside pairs of <code class="highlighter-rouge">[]</code>, <code
+              class="highlighter-rouge"><span class="p">{}</span></code> or <code class="highlighter-rouge">()</code>.
+            Means you can do following without use <code class="highlighter-rouge">"\"</code></h3>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code> <span class="n">cards</span> <span class="o">=</span> <span class="p">[</span><span class="n">Card</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">)</span> <span class="k">for</span> <span class="n">suit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">suits</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code> <span class="n">cards</span> <span class="o">=</span> <span class="p">[</span><span class="n">Card</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">)</span> <span class="k">for</span> <span class="n">suit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">suits</span>
                            <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ranks</span><span class="p">]</span>
 </code></pre>
-</div>
+          </div>
 
-<h3 id="variable-leak-in-python-2x-but-no-longer-in-python-3x">Variable Leak in Python <code class="highlighter-rouge">2.x</code> but no longer in python <code class="highlighter-rouge">3.x</code></h3>
-<p>Python <code class="highlighter-rouge">2.x</code></p>
+          <h3 id="variable-leak-in-python-2x-but-no-longer-in-python-3x">Variable Leak in Python <code
+              class="highlighter-rouge">2.x</code> but no longer in python <code class="highlighter-rouge">3.x</code>
+          </h3>
+          <p>Python <code class="highlighter-rouge">2.x</code></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'my precious'</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'my precious'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dummy</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">'ABC'</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
 <span class="s">'C'</span>
 </code></pre>
-</div>
+          </div>
 
-<p>Python <code class="highlighter-rouge">3.x</code></p>
+          <p>Python <code class="highlighter-rouge">3.x</code></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'ABC'</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'ABC'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dummy</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
 <span class="s">'ABC'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dummy</span>
 <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">67</span><span class="p">]</span>
 </code></pre>
-</div>
+          </div>
 
-<h3 id="efficiency-listcomp-is-the-best">Efficiency: listcomp is the best</h3>
-<p>example <code class="highlighter-rouge">code</code>:</p>
+          <h3 id="efficiency-listcomp-is-the-best">Efficiency: listcomp is the best</h3>
+          <p>example <code class="highlighter-rouge">code</code>:</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">timeit</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="kn">import</span> <span class="nn">timeit</span>
 
 <span class="n">TIMES</span> <span class="o">=</span> <span class="mi">10000</span>
 
@@ -190,22 +203,24 @@ def non_ascii(c):
 <span class="n">clock</span><span class="p">(</span><span class="s">'filter + lambda :'</span><span class="p">,</span> <span class="s">'list(filter(lambda c: c &gt; 127, map(ord, symbols)))'</span><span class="p">)</span>
 <span class="n">clock</span><span class="p">(</span><span class="s">'filter + func   :'</span><span class="p">,</span> <span class="s">'list(filter(non_ascii, map(ord, symbols)))'</span><span class="p">)</span>
 </code></pre>
-</div>
+          </div>
 
-<p>result:</p>
+          <p>result:</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">listcomp</span>        <span class="p">:</span> <span class="mf">0.015</span> <span class="mf">0.015</span> <span class="mf">0.015</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="n">listcomp</span>        <span class="p">:</span> <span class="mf">0.015</span> <span class="mf">0.015</span> <span class="mf">0.015</span>
 <span class="n">listcomp</span> <span class="o">+</span> <span class="n">func</span> <span class="p">:</span> <span class="mf">0.021</span> <span class="mf">0.024</span> <span class="mf">0.023</span>
 <span class="nb">filter</span> <span class="o">+</span> <span class="k">lambda</span> <span class="p">:</span> <span class="mf">0.022</span> <span class="mf">0.023</span> <span class="mf">0.024</span>
 <span class="nb">filter</span> <span class="o">+</span> <span class="n">func</span>   <span class="p">:</span> <span class="mf">0.020</span> <span class="mf">0.022</span> <span class="mf">0.025</span>
 </code></pre>
-</div>
+          </div>
 
-<h2 id="example-of-generator-expressions">Example of Generator Expressions</h2>
+          <h2 id="example-of-generator-expressions">Example of Generator Expressions</h2>
 
-<p>Initializing a tuple and an array from a generator expression</p>
+          <p>Initializing a tuple and an array from a generator expression</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">symbols</span> <span class="o">=</span> <span class="s">'$¢£¥€¤'</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">symbols</span> <span class="o">=</span> <span class="s">'$¢£¥€¤'</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">163</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">8364</span><span class="p">,</span> <span class="mi">164</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">array</span>
@@ -222,19 +237,22 @@ def non_ascii(c):
 <span class="n">white</span> <span class="n">M</span>
 <span class="n">white</span> <span class="n">L</span>
 </code></pre>
-</div>
+          </div>
 
-<h2 id="notes-1">Notes</h2>
+          <h2 id="notes-1">Notes</h2>
 
-<p>A genexp saves memory because it yields items one by one using the iterator protocol instead of building a whole list just to feed another constructor.</p>
+          <p>A genexp saves memory because it yields items one by one using the iterator protocol instead of building a
+            whole list just to feed another constructor.</p>
 
-<h1 id="tuples">Tuples</h1>
+          <h1 id="tuples">Tuples</h1>
 
-<h2 id="tuples-as-records">Tuples as Records</h2>
+          <h2 id="tuples-as-records">Tuples as Records</h2>
 
-<p>Tuples hold records: each item in the tuple holds the data for one field and the position of the item gives its meaning.</p>
+          <p>Tuples hold records: each item in the tuple holds the data for one field and the position of the item gives
+            its meaning.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">lax_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">33.9425</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.408056</span><span class="p">)</span>
+          <div class="language-python highlighter-rouge">
+            <pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">lax_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">33.9425</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.408056</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">city</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">chg</span><span class="p">,</span> <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="s">'Tokyo'</span><span class="p">,</span> <span class="mi">2003</span><span class="p">,</span> <span class="mi">32450</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">8014</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">traveler_ids</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'USA'</span><span class="p">,</span> <span class="s">'31195855'</span><span class="p">),</span> <span class="p">(</span><span class="s">'BRA'</span><span class="p">,</span> <span class="s">'CE342567'</span><span class="p">),</span>
 <span class="o">...</span> <span class="p">(</span><span class="s">'ESP'</span><span class="p">,</span> <span class="s">'XDA205856'</span><span class="p">)]</span>
@@ -245,45 +263,59 @@ def non_ascii(c):
 <span class="n">ESP</span><span class="o">/</span><span class="n">XDA205856</span>
 <span class="n">USA</span><span class="o">/</span><span class="mi">31195855</span>
 </code></pre>
-</div>
+          </div>
 
-<p>Tuple Unpacking</p>
+          <p>Tuple Unpacking</p>
 
 
-         </div>
-    </div>  
-</section>
+        </div>
+      </div>
+    </section>
+
 
 
 
 
     
-<!-- Footer -->
-<section id="footer">
-    <div class="inner">
-        <h2 class="major">Get in touch</h2>
-        <p></p>
-        <ul class="contact">
-            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
-            
-            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
-            
-            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
-        </ul>
-        <ul class="copyright">
-            <li>Copyright &copy; Shujin Wu 2017</li>
-        </ul>
-    </div>
-</section>
+            <center>
+                <ul class="actions">
+                    <li>
+                        <a href="#" class="button">Back to Top</a>
+                    </li>
+                </ul>
+            </center>
+            <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
 
-</div>
-<!-- Scripts -->
-<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+        <ul class="copyright">
+          <center>
+            <span onclick="window.open('mailto:krunalwave@gmail.com', '_blank');" style="cursor: pointer;">
+              <i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>&nbsp;
+            </span>
+            <span onclick="window.open('https://github.com/krunalwave', '_blank');" style="cursor: pointer;">
+              <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>&nbsp;
+            </span>
+            <span onclick="window.open('https://www.linkedin.com/in/krunalwave', '_blank');" style="cursor: pointer;">
+              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>&nbsp;
+            </span>
+            <span onclick="window.open('https://www.x.com/krunalwave', '_blank');" style="cursor: pointer;">
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>&nbsp;
+            </span>
+            <br> Copyright &copy; Krunal Patel 2024
+          </center>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+  <!-- Scripts -->
+  <script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+  <script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+  <script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+  <script src="../../../../assets/themes/solid-state/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="../../../../assets/themes/solid-state/js/main.js"></script>
 
 
 
@@ -294,5 +326,5 @@ def non_ascii(c):
 
 
 <!-- Mirrored from suzywu2014.github.io/python/2016/05/12/An-Array-of-Sequences by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:19:54 GMT -->
-</html>
 
+</html>

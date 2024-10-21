@@ -1,24 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 
 <!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/23/macos-sierra-virtualbox-vm-on-ubuntu by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:06 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Suzy Wu's blog">
 
-    <title>MacOS VirtualBox VM on Ubuntu - Shujin Wu</title>
+    <title>MacOS VirtualBox VM on Ubuntu - Krunal Patel</title>
 
-<!--     <link rel="canonical" href="http://suzywu2014.github.io/ubuntu/2017/02/23/macos-sierra-virtualbox-vm-on-ubuntu"> -->
+    <!--     <link rel="canonical" href="http://suzywu2014.github.io/ubuntu/2017/02/23/macos-sierra-virtualbox-vm-on-ubuntu"> -->
 
-	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
-	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,11 +27,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
-	<!-- MathJax -->
-	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+    <!-- MathJax -->
+    <script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
 
-	<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],
 		jax: ["input/TeX", "output/HTML-CSS"],
@@ -50,133 +52,163 @@
 
 <body>
     <!-- Page Wrapper -->
-<div id="page-wrapper">
-    <!-- Header -->
-    <header id="header" class="alt">
-        <h1><a href="index.html">Shujin Wu</a></h1>
-        <nav>
-            <a href="#menu">Menu</a>
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="index.html">Krunal Patel</a></h1>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="../../../../index.html">Home</a></li>
+                    <li><a href="../../../../resume.html">Resume</a></li>
+                    <li><a href="../../../../resources.html">Resources</a></li>
+ 
+                    <li><a href="../../../../archive.html">Archive</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
         </nav>
-    </header>
 
-    <!-- Menu -->
-    <nav id="menu">
-        <div class="inner">
-            <h2>Menu</h2>
-            <ul class="links">
-                <li><a href="../../../../index-3.html">Home</a></li>
-                <li><a href="../../../../resume.html">résumé</a></li>
-                <li><a href="../../../../resources.html">Resources</a></li>
-                <li><a href="../../../../categories.html">Notes</a></li>
-                <li><a href="../../../../archive.html">Archive</a></li>
-            </ul>
-            <a href="#" class="close">Close</a>
-        </div>
-    </nav>
 
-    
-<section id="wrapper">
-    <header>
-        <div class="inner">
-            <h2>MacOS VirtualBox VM on Ubuntu</h2> 
-            <p>Posted by Shujin Wu on February 23, 2017</p> 
-        </div>
-    </header>
-    <div class="wrapper">
-         <div class="inner">
-         
-<h2 id="step-1-download-the-sierra-installer-from-mac-app-store">Step 1： Download the Sierra installer from Mac App Store.</h2>
+        <section id="wrapper">
+            <header>
+                <div class="inner">
+                    <h2>MacOS VirtualBox VM on Ubuntu</h2>
+                    <p>Posted by Krunal Patel on February 23, 2017</p>
+                </div>
+            </header>
+            <div class="wrapper">
+                <div class="inner">
 
-<p>This should be done in you Mac and the installer will be placed in <code class="highlighter-rouge">/Application/</code> folder.</p>
+                    <h2 id="step-1-download-the-sierra-installer-from-mac-app-store">Step 1： Download the Sierra
+                        installer from Mac App Store.</h2>
 
-<h2 id="step-2-prepare-sierra-iso">Step 2: Prepare Sierra iso</h2>
+                    <p>This should be done in you Mac and the installer will be placed in <code
+                            class="highlighter-rouge">/Application/</code> folder.</p>
 
-<p>Use <a href="https://github.com/geerlingguy/macos-virtualbox-vm">geerlingguy’s script</a> to prepare a sierra iso file.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/geerlingguy/macos-virtualbox-vm.git
+                    <h2 id="step-2-prepare-sierra-iso">Step 2: Prepare Sierra iso</h2>
+
+                    <p>Use <a href="https://github.com/geerlingguy/macos-virtualbox-vm">geerlingguy’s script</a> to
+                        prepare a sierra iso file.</p>
+                    <div class="language-bash highlighter-rouge">
+                        <pre class="highlight"><code>git clone https://github.com/geerlingguy/macos-virtualbox-vm.git
 <span class="nb">cd </span>macos-virtualbox-vm
 chmod +x prepare-iso.sh
 ./prepare-iso.sh /Applications/Install<span class="se">\ </span>macOS Sierra.app /Users/suzy/sierra.iso
 </code></pre>
-</div>
+                    </div>
 
-<h2 id="step3-install-virtualbox-in-ubuntu">Step3: Install VirtualBox in Ubuntu</h2>
+                    <h2 id="step3-install-virtualbox-in-ubuntu">Step3: Install VirtualBox in Ubuntu</h2>
 
-<p>You should have your VirtualBox and the Extension Pack installed, or use <a href="https://github.com/SuzyWu2014/ubuntu-ansible/tree/master/roles/vagrant">my ansible role</a></p>
+                    <p>You should have your VirtualBox and the Extension Pack installed, or use <a
+                            href="https://github.com/SuzyWu2014/ubuntu-ansible/tree/master/roles/vagrant">my ansible
+                            role</a></p>
 
-<h2 id="step-4-open-virtualbox-and-create-a-new-vm">Step 4: Open VirtualBox and create a new VM.</h2>
+                    <h2 id="step-4-open-virtualbox-and-create-a-new-vm">Step 4: Open VirtualBox and create a new VM.
+                    </h2>
 
-<p>Settings:</p>
-<ul>
-  <li>name: your_sierra_vm_name</li>
-  <li>type: Osx</li>
-  <li>version: Mac OS X 10.11 El Capitan (64-bit)</li>
-  <li>Other</li>
-</ul>
+                    <p>Settings:</p>
+                    <ul>
+                        <li>name: your_sierra_vm_name</li>
+                        <li>type: Osx</li>
+                        <li>version: Mac OS X 10.11 El Capitan (64-bit)</li>
+                        <li>Other</li>
+                    </ul>
 
-<p><img src="../../../../../raw.githubusercontent.com/SuzyWu2014/SuzyWu2014.github.io/master/_posts/Env/pic/sierra-vm-setting.png" alt="settings" /></p>
+                    <p><img src="../../../../../raw.githubusercontent.com/SuzyWu2014/SuzyWu2014.github.io/master/_posts/Env/pic/sierra-vm-setting.png"
+                            alt="settings" /></p>
 
-<h2 id="step5-configure-vm-for-macos-very-important">Step5: Configure VM for MacOS (Very important!)</h2>
+                    <h2 id="step5-configure-vm-for-macos-very-important">Step5: Configure VM for MacOS (Very important!)
+                    </h2>
 
-<p>Run following commands and replace “Sierra” with ‘your_sierra_vm_name’.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>VBoxManage modifyvm Sierra  --cpuidset 00000001 000306a9 00020800 80000201 178bfbff
+                    <p>Run following commands and replace “Sierra” with ‘your_sierra_vm_name’.</p>
+                    <div class="language-bash highlighter-rouge">
+                        <pre class="highlight"><code>VBoxManage modifyvm Sierra  --cpuidset 00000001 000306a9 00020800 80000201 178bfbff
 VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemProduct"</span> <span class="s2">"iMac11,3"</span>
 VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiSystemVersion"</span> <span class="s2">"1.0"</span>
 VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxInternal/Devices/efi/0/Config/DmiBoardProduct"</span> <span class="s2">"Iloveapple"</span>
 VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/DeviceKey"</span> <span class="s2">"ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"</span>
 VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC"</span> 1
 </code></pre>
-</div>
+                    </div>
 
-<h2 id="step-6-install-sierra">Step 6: Install Sierra</h2>
+                    <h2 id="step-6-install-sierra">Step 6: Install Sierra</h2>
 
-<p>Insert <code class="highlighter-rouge">sierra.iso</code> to the sierra VM’s optical driver, and follow the instruction to install Sierra.</p>
+                    <p>Insert <code class="highlighter-rouge">sierra.iso</code> to the sierra VM’s optical driver, and
+                        follow the instruction to install Sierra.</p>
 
-<p>Note: In the installer, Go to Utilities &gt; Disk Utility. Select the VirtualBox disk and choose Erase to format it as a Mac OS Extended (Journaled) drive.</p>
+                    <p>Note: In the installer, Go to Utilities &gt; Disk Utility. Select the VirtualBox disk and choose
+                        Erase to format it as a Mac OS Extended (Journaled) drive.</p>
 
-<h2 id="step-7-remove-sierraiso-and-restart-vm">Step 7: Remove sierra.iso and restart VM.</h2>
+                    <h2 id="step-7-remove-sierraiso-and-restart-vm">Step 7: Remove sierra.iso and restart VM.</h2>
 
-<h2 id="reference">Reference</h2>
+                    <h2 id="reference">Reference</h2>
 
-<p>See also:</p>
-<ul>
-  <li><a href="https://github.com/geerlingguy/macos-virtualbox-vm">macOS VirtualBox VM Instructions</a></li>
-  <li><a href="https://getpocket.com/a/read/1490886679">Run Mac Osx on Virtualbox on Ubuntu</a></li>
-</ul>
+                    <p>See also:</p>
+                    <ul>
+                        <li><a href="https://github.com/geerlingguy/macos-virtualbox-vm">macOS VirtualBox VM
+                                Instructions</a></li>
+                        <li><a href="https://getpocket.com/a/read/1490886679">Run Mac Osx on Virtualbox on Ubuntu</a>
+                        </li>
+                    </ul>
 
-         </div>
-    </div>  
-</section>
+                </div>
+            </div>
+        </section>
 
 
 
 
-    
-<!-- Footer -->
-<section id="footer">
-    <div class="inner">
-        <h2 class="major">Get in touch</h2>
-        <p></p>
-        <ul class="contact">
-            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
-            
-            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
-            
-            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
-        </ul>
-        <ul class="copyright">
-            <li>Copyright &copy; Shujin Wu 2017</li>
-        </ul>
+
+        
+            <center>
+                <ul class="actions">
+                    <li>
+                        <a href="#" class="button">Back to Top</a>
+                    </li>
+                </ul>
+            </center>
+            <!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+
+                <ul class="copyright">
+                    <center>
+                        <span onclick="window.open('mailto:krunalwave@gmail.com', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://github.com/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://www.linkedin.com/in/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://www.x.com/krunalwave', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <br> Copyright &copy; Krunal Patel 2024
+                    </center>
+                </ul>
+            </div>
+        </section>
+
     </div>
-</section>
-
-</div>
-<!-- Scripts -->
-<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../../../../assets/themes/solid-state/js/main.js"></script>
 
 
 
@@ -187,5 +219,5 @@ VBoxManage setextradata <span class="s2">"Sierra"</span> <span class="s2">"VBoxI
 
 
 <!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/23/macos-sierra-virtualbox-vm-on-ubuntu by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:06 GMT -->
-</html>
 
+</html>

@@ -1,24 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 
 <!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:14 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Suzy Wu's blog">
 
-    <title>Set up Sublime3 in Ubuntu - Shujin Wu</title>
+    <title>Set up Sublime3 in Ubuntu - Krunal Patel</title>
 
-<!--     <link rel="canonical" href="http://suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3"> -->
+    <!--     <link rel="canonical" href="http://suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3"> -->
 
-	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
-	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,11 +27,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
-	<!-- MathJax -->
-	<script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../../../assets/themes/solid-state/css/syntax.css">
+    <!-- MathJax -->
+    <script src="../../../../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
 
-	<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 		extensions: ["tex2jax.js"],
 		jax: ["input/TeX", "output/HTML-CSS"],
@@ -50,72 +52,74 @@
 
 <body>
     <!-- Page Wrapper -->
-<div id="page-wrapper">
-    <!-- Header -->
-    <header id="header" class="alt">
-        <h1><a href="index.html">Shujin Wu</a></h1>
-        <nav>
-            <a href="#menu">Menu</a>
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="index.html">Krunal Patel</a></h1>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="../../../../index.html">Home</a></li>
+                    <li><a href="../../../../resume.html">Resume</a></li>
+                    <li><a href="../../../../resources.html">Resources</a></li>
+ 
+                    <li><a href="../../../../archive.html">Archive</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
         </nav>
-    </header>
 
-    <!-- Menu -->
-    <nav id="menu">
-        <div class="inner">
-            <h2>Menu</h2>
-            <ul class="links">
-                <li><a href="../../../../index-3.html">Home</a></li>
-                <li><a href="../../../../resume.html">résumé</a></li>
-                <li><a href="../../../../resources.html">Resources</a></li>
-                <li><a href="../../../../categories.html">Notes</a></li>
-                <li><a href="../../../../archive.html">Archive</a></li>
-            </ul>
-            <a href="#" class="close">Close</a>
-        </div>
-    </nav>
 
-    
-<section id="wrapper">
-    <header>
-        <div class="inner">
-            <h2>Set up Sublime3 in Ubuntu</h2> 
-            <p>Posted by Shujin Wu on February 18, 2017</p> 
-        </div>
-    </header>
-    <div class="wrapper">
-         <div class="inner">
-         
-<h1 id="ansible-role">Ansible Role</h1>
+        <section id="wrapper">
+            <header>
+                <div class="inner">
+                    <h2>Set up Sublime3 in Ubuntu</h2>
+                    <p>Posted by Krunal Patel on February 18, 2017</p>
+                </div>
+            </header>
+            <div class="wrapper">
+                <div class="inner">
 
-<p>Run Ansible playbook: <a href="https://github.com/SuzyWu2014/my-ansible-roles">Ubuntu Environment Set Up</a></p>
+                    <h1 id="ansible-role">Ansible Role</h1>
 
-<h1 id="packages">Packages</h1>
+                    <p>Run Ansible playbook: <a href="https://github.com/SuzyWu2014/my-ansible-roles">Ubuntu Environment
+                            Set Up</a></p>
 
-<p><code class="highlighter-rouge">[Ctrl+Shift+P] -&gt; Install Packages</code></p>
+                    <h1 id="packages">Packages</h1>
 
-<ul>
-  <li>SidebarEnhancement</li>
-  <li>SublimeLinter</li>
-  <li>SublimeLinter-pep8</li>
-  <li>SublimeCodeIntel</li>
-  <li>SublimeHaskell</li>
-  <li>GitGutter</li>
-  <li>JSLint</li>
-  <li>Markdown-editing (update line_numbers to true for each user setting)</li>
-  <li>Markdown Preview</li>
-  <li>Trailing-space</li>
-  <li>Color-highlighter</li>
-  <li>bracketHighlighter</li>
-  <li>CTag</li>
-  <li>ansible</li>
-  <li><a href="https://github.com/YabataDesign/afterglow-theme">afterglow-theme</a></li>
-</ul>
+                    <p><code class="highlighter-rouge">[Ctrl+Shift+P] -&gt; Install Packages</code></p>
 
-<h1 id="configuration">Configuration</h1>
+                    <ul>
+                        <li>SidebarEnhancement</li>
+                        <li>SublimeLinter</li>
+                        <li>SublimeLinter-pep8</li>
+                        <li>SublimeCodeIntel</li>
+                        <li>SublimeHaskell</li>
+                        <li>GitGutter</li>
+                        <li>JSLint</li>
+                        <li>Markdown-editing (update line_numbers to true for each user setting)</li>
+                        <li>Markdown Preview</li>
+                        <li>Trailing-space</li>
+                        <li>Color-highlighter</li>
+                        <li>bracketHighlighter</li>
+                        <li>CTag</li>
+                        <li>ansible</li>
+                        <li><a href="https://github.com/YabataDesign/afterglow-theme">afterglow-theme</a></li>
+                    </ul>
 
-<p><code class="highlighter-rouge">Preferences -&gt; Settings (User)</code></p>
+                    <h1 id="configuration">Configuration</h1>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+                    <p><code class="highlighter-rouge">Preferences -&gt; Settings (User)</code></p>
+
+                    <div class="language-json highlighter-rouge">
+                        <pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"added_words"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
         </span><span class="s2">"filesystems"</span><span class="w">
@@ -167,10 +171,11 @@
     </span><span class="nt">"word_wrap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-</div>
+                    </div>
 
-<p><code class="highlighter-rouge">Preferences -&gt; key bindings</code></p>
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">[{</span><span class="w"> </span><span class="nt">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ctrl+shift+o"</span><span class="p">],</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prompt_open_folder"</span><span class="w"> </span><span class="p">},</span><span class="w">
+                    <p><code class="highlighter-rouge">Preferences -&gt; key bindings</code></p>
+                    <div class="language-json highlighter-rouge">
+                        <pre class="highlight"><code><span class="p">[{</span><span class="w"> </span><span class="nt">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ctrl+shift+o"</span><span class="p">],</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prompt_open_folder"</span><span class="w"> </span><span class="p">},</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -273,51 +278,71 @@
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-</div>
+                    </div>
 
-<h2 id="add-chinese-support">Add Chinese Support</h2>
+                    <h2 id="add-chinese-support">Add Chinese Support</h2>
 
-<p><a href="http://html5beta.com/page/ubuntu-14-04-install-fcitx-sougoupinyin-sublime-text-3-chinese-input-fix.html#">Enable sougou-pinyin in SublimeText 3</a></p>
+                    <p><a
+                            href="http://html5beta.com/page/ubuntu-14-04-install-fcitx-sougoupinyin-sublime-text-3-chinese-input-fix.html#">Enable
+                            sougou-pinyin in SublimeText 3</a></p>
 
-<ul>
-  <li>Go to <code class="highlighter-rouge">/opt/sublime_text</code></li>
-  <li>Run <code class="highlighter-rouge">sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  </code>pkg-config –libs –cflags gtk+-2.0<code class="highlighter-rouge"> -fPIC</code></li>
-</ul>
+                    <ul>
+                        <li>Go to <code class="highlighter-rouge">/opt/sublime_text</code></li>
+                        <li>Run <code
+                                class="highlighter-rouge">sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  </code>pkg-config
+                            –libs –cflags gtk+-2.0<code class="highlighter-rouge"> -fPIC</code></li>
+                    </ul>
 
-         </div>
-    </div>  
-</section>
+                </div>
+            </div>
+        </section>
 
 
 
 
-    
-<!-- Footer -->
-<section id="footer">
-    <div class="inner">
-        <h2 class="major">Get in touch</h2>
-        <p></p>
-        <ul class="contact">
-            <li class="fa-envelope"><a href="#">shujin_dot_wu_dot_osu@gmail_dot_com</a></li>
-            
-            <li class="fa-github"><a href="https://github.com/SuzyWu2014">GitHub</a></li>
-            
-            <li class="fa-linkedin"><a href="https://www.linkedin.com/in/shujinwu">LinkedIn</a></li>
-        </ul>
-        <ul class="copyright">
-            <li>Copyright &copy; Shujin Wu 2017</li>
-        </ul>
+
+        
+            <center>
+                <ul class="actions">
+                    <li>
+                        <a href="#" class="button">Back to Top</a>
+                    </li>
+                </ul>
+            </center>
+            <!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+
+                <ul class="copyright">
+                    <center>
+                        <span onclick="window.open('mailto:krunalwave@gmail.com', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://github.com/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://www.linkedin.com/in/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <span onclick="window.open('https://www.x.com/krunalwave', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>&nbsp;
+                        </span>
+                        <br> Copyright &copy; Krunal Patel 2024
+                    </center>
+                </ul>
+            </div>
+        </section>
+
     </div>
-</section>
-
-</div>
-<!-- Scripts -->
-<script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
-<script src="../../../../assets/themes/solid-state/js/util.js"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="../../../../assets/themes/solid-state/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="../../../../assets/themes/solid-state/js/skel.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/jquery.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+    <script src="../../../../assets/themes/solid-state/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../../../../assets/themes/solid-state/js/main.js"></script>
 
 
 
@@ -328,5 +353,5 @@
 
 
 <!-- Mirrored from suzywu2014.github.io/ubuntu/2017/02/18/Ubuntu-sublime3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Aug 2017 12:20:15 GMT -->
-</html>
 
+</html>
