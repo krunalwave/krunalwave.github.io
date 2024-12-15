@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Krunal's blog">
+
+    <title>Krunal Patel | MobaXterm Keygen</title>
+    <link rel="canonical" href="http://krunalwave.github.io/">
+    <link rel="stylesheet" href="../assets/themes/solid-state/css/main.css" />
+    <link rel="stylesheet" href="../assets/themes/solid-state/css/syntax.css">
+    <!-- MathJax -->
+    <script src="../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"], tex2jax: {
+        <!-- inlineMath: [ ['$','$'], ["\\(","\\)"] ], -->
+        inlineMath: [ ['$','$'] ],
+        <!-- displayMath: [ ['$$','$$'], ["\\[","\\]"] ], -->
+        displayMath: [ ['$$','$$'] ], processEscapes: true }, "HTML-CSS": { availableFonts: ["TeX"] },
+        <!-- displayAlign: "left" -->
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="../index.html">Krunal Patel</a></h1>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../archive.html">Archive</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <h2>MobaXterm Keygen</h2>
+            </div>
+        </section>
+
+        <!-- Content -->
+        <div class="wrapper">
+            <div class="inner">
+                <section>
+                    <div id="app">
+                        <form class="box auto-center">
+                            <fieldset>
+                                <div class="field">
+                                    <label for="licenseType">Version:</label>
+                                    <select name="licenseType" id="licenseType" v-model="licenseType"
+                                        class="select-wrapper">
+                                        <option v-for="(val, key) in LICENSE_TYPES" :value="val">{{key}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="field">
+                                    <label for="userName">Username:</label>
+                                    <input type="text" id="userName" name="userName" placeholder="Krunal"
+                                        pattern="^[a-zA-Z]+$" title="Only letters can be used" v-model="userName"
+                                        class="input">
+                                </div>
+
+                                <div class="field">
+                                    <label for="versionName">Version Number:</label>
+                                    <input type="text" id="versionName" name="versionName" placeholder="24.0"
+                                        pattern="[1-9][0-9]*\.?\d?"
+                                        title="Decimal and can only have 1 digit after the decimal point"
+                                        v-model="versionName" class="input">
+                                </div>
+
+                                <div class="field">
+                                    <label for="userNum">Number of Users:</label>
+                                    <input type="text" id="userNum" name="userNum" placeholder="1" pattern="[1-9][0-9]*"
+                                        title="Please enter a number greater than 0 (e.g., 1, 2, 10)" v-model="userNum"
+                                        class="input">
+                                </div>
+
+                                <div class="actions">
+                                    <button type="submit" class="button primary icon fa-cogs" @click.stop="generate">
+                                        Generate
+                                    </button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <!-- Information Section -->
+                    <section id="info">
+                        <div class="inner">
+                            <h2>Important Instructions</h2>
+                            <p>This will download the "Custom.mxtpro" file. Please move or copy the newly-generated
+                                "Custom.mxtpro" file to MobaXterm's installation path.</p>
+                            <p>Most of you have this path: <strong>C:\Program Files (x86)\Mobatek\MobaXterm</strong></p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <center>
+                        <span onclick="window.open('mailto:krunalwave@gmail.com', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+                        </span>
+                        <span onclick="window.open('https://github.com/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>
+                        </span>
+                        <span onclick="window.open('https://www.linkedin.com/in/krunalwave', '_blank');"
+                            style="cursor: pointer;">
+                            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+                        </span>
+                        <span onclick="window.open('https://www.x.com/krunalwave', '_blank');" style="cursor: pointer;">
+                            <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                        </span>
+                        <br> Copyright &copy; Krunal Patel 2024
+                    </center>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { LicenseType, generateLicense } from './js/mobaXtermGenerater.js';
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    LICENSE_TYPES: LicenseType,
+                    licenseType: 1,
+                    userName: '',
+                    versionName: '',
+                    userNum: '',
+                };
+            },
+            methods: {
+                setUserName(newVal) {
+                    this.userName = newVal;
+                },
+                setVersionName(newVal) {
+                    this.versionName = newVal;
+                },
+                setUserNum(newVal) {
+                    this.userNum = newVal;
+                },
+                generate() {
+                    if (!this.userName) {
+                        alert('Please fill in the Username');
+                        return;
+                    }
+                    if (!this.versionName) {
+                        alert('Please fill in the Version name');
+                        return;
+                    }
+                    if (!this.userNum) this.userNum = 1;
+                    let versionNameArr = this.versionName.split('.');
+                    const majorVersion = parseInt(versionNameArr[0]);
+                    const minorVersion = versionNameArr.length === 2 ? parseInt(versionNameArr[1]) || 0 : 0;
+                    let licenseStr = generateLicense(this.licenseType, this.userName, this.userNum, majorVersion, minorVersion);
+                    this.generateLicenseFile(licenseStr);
+                },
+                generateLicenseFile(licenseStr) {
+                    let zip = new JSZip();
+                    zip.file("Pro.key", licenseStr);
+                    zip.generateAsync({ type: "blob" }).then(function (content) {
+                        saveAs(content, "Custom.mxtpro");
+                    });
+                },
+            },
+        });
+    </script>
+    <script src="../assets/themes/solid-state/js/skel.min.js"></script>
+    <script src="../assets/themes/solid-state/js/jquery.min.js"></script>
+    <script src="../assets/themes/solid-state/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/themes/solid-state/js/util.js"></script>
+    <script src="../assets/themes/solid-state/js/main.js"></script>
+    <script src="./js/vue.min-2.6.12.js"></script>
+    <script src="./js/FileSaver.js"></script>
+    <script src="./js/jszip.js"></script>
+</body>
+
+</html>
